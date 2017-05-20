@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+<!-- block title -->
+{% block title %} {{ title }} {% endblock title %}
+
+<!-- Block content -->
+{% block content %}
+    <a class="btn btn-primary" href="{{ url_for('forum.create_topic') }}">Создать обсуждение</a>
+    <table class="table table-hover">
+        <thead>
+            <th>Название</th>
+            <th>Дата</th>
+            <th>Ответов</th>
+            <th>Просмотров</th>
+        </thead>
+        <tbody>
+            <tr class="">
+                <td>
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <a href="#">
+                                <img class="media-object" height="24" width="24" src="{{ url_for('static', filename="img/favicon.png") }}" alt="">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Title</h4>
+                            Subtitle
+                        </div>
+                    </div>
+                </td>
+                <td>дата </td>
+                <td>ответов</td>
+                <td>просмотров</td>
+            </tr>
+        <tr class="">
+                <td>
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <a href="#">
+                                <img class="media-object" height="24" width="24" src="{{ url_for('static', filename="img/favicon.png") }}" alt="">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Title</h4>
+                            Subtitle
+                        </div>
+                    </div>
+                </td>
+                <td>дата</td>
+                <td>ответов</td>
+                <td>просмотров</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock content %}
+
+<!-- Block sidebar -->
+{% block sidebar %}
+    <h4>Новые обсуждения</h4>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="#">
+                            <img class="media-object" height="24" width="24" src="{{ url_for('static', filename="img/favicon.png") }}" alt="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Title</h4>
+                        Subtitle
+                    </div>
+                </div>
+            </li>
+        </ul>
+    <hr>
+    <h4>Статистика</h4>
+    <ul class="list-group">
+        <li class="list-group-item">
+            Обсуждений
+            <span class="badge">0</span>
+        </li>
+        <li class="list-group-item">
+            Сообщений
+            <span class="badge">0</span>
+        </li>
+        <li class="list-group-item">
+            Участников
+            <span class="badge">0</span>
+        </li>
+    </ul>
+{% endblock sidebar %}
