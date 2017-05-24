@@ -9,18 +9,20 @@ class Topic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(length=200))
     content = db.Column(db.Text, nullable=False)
-    date_created = db.Column(db.DateTime, default=datetime.utcnow)
-    date_last_changes = db.Column(db.DateTime, default=datetime.utcnow)
+    date_created = db.Column(db.DateTime)
+    date_last_changes = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     views = db.Column(db.Integer, default=0)
     locked = db.Column(db.Boolean, default=False)
     amount = db.Column(db.Integer, default=0)
 
-    def __init__(self, title, date_created, views, amount):
+
+    def __init__(self, title,content):
         self.title = title
-        self.date_created = date_created
-        self.views = views
-        self.amount = amount
+        self.content = content
+        self.date_created = datetime.utcnow
+        self.date_last_changes = datetime.utcnow
+
 
     def __repr__(self):
         return '<Topics {}>'.format(self.title)
@@ -34,13 +36,11 @@ class Post(db.Model):
     topic_id = db.Column(db.Integer, db.ForeignKey('topics.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    def __init__(self, title):
-        self.title = title
-
-
+    def __init__(self, content):
+        self.content = content
 
     def __repr__(self):
-        return '<Posts {}>'.format(self.title)
+        return '<Posts {}>'.format(self.content)
 
 
 class Category(db.Model):

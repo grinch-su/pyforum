@@ -8,48 +8,33 @@
     <a class="btn btn-primary" href="{{ url_for('forum.create_topic') }}">Создать обсуждение</a>
     <table class="table table-hover">
         <thead>
-            <th>Название</th>
-            <th>Дата</th>
-            <th>Ответов</th>
-            <th>Просмотров</th>
+            <th><a href="#">Название</a></th>
+            <th><a href="#">Дата</a></th>
+            <th><a href="#">Ответов</a></th>
+            <th><a href="#">Просмотров</a></th>
         </thead>
         <tbody>
+            {% for topic in topics %}
             <tr class="">
-                <td>
-                    <div class="media">
-                        <div class="media-left media-middle">
-                            <a href="#">
-                                <img class="media-object" height="24" width="24" src="{{ url_for('static', filename="img/favicon.png") }}" alt="">
-                            </a>
+                    <td>
+                        <div class="media">
+                            <div class="media-left media-middle">
+                                <a href="{{ url_for('user.show_profile_user', user_id=topic.user_id) }}">
+                                    <img class="media-object" height="24" width="24" src="" alt="">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <a href="{{ url_for('forum.topic', topic_id = topic.id) }}">
+                                    <h4 class="media-heading">{{ topic.title }}</h4>
+                                </a>
+                            </div>
                         </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">Title</h4>
-                            Subtitle
-                        </div>
-                    </div>
-                </td>
-                <td>дата </td>
-                <td>ответов</td>
-                <td>просмотров</td>
-            </tr>
-        <tr class="">
-                <td>
-                    <div class="media">
-                        <div class="media-left media-middle">
-                            <a href="#">
-                                <img class="media-object" height="24" width="24" src="{{ url_for('static', filename="img/favicon.png") }}" alt="">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">Title</h4>
-                            Subtitle
-                        </div>
-                    </div>
-                </td>
-                <td>дата</td>
-                <td>ответов</td>
-                <td>просмотров</td>
-            </tr>
+                    </td>
+                    <td>{{ topic.date_created }} </td>
+                    <td>{{ topic.amount }}</td>
+                    <td>{{ topic.views }}</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 {% endblock content %}

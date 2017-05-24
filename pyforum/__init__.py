@@ -5,7 +5,6 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_mail import Mail
 
-
 app = Flask(__name__)
 
 # configuration app
@@ -44,5 +43,5 @@ app.register_blueprint(message_module)
 app.register_blueprint(chat_module)
 
 # create tables for db use sqlalchemy
-# with pyforum.app_context():
-db.create_all()
+with app.app_context():
+    db.create_all()

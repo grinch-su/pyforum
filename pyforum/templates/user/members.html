@@ -6,6 +6,32 @@
 
 {% block content %}
     <h4>Участники</h4>
+
+    {% for member in members %}
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="{{ url_for('user.show_profile_user', user_id = member.id) }}">
+                            <img class="media-object" height="24" width="24" alt="" src="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <a href="{{ url_for('user.show_profile_user', user_id = member.id) }}">
+                            <h4 class="media-heading">{{ member.username }}</h4>
+                        </a>
+                        <p>{{ member.status }}</p>
+                        <p class="text-muted">
+                            Постов: {{ member.post_count }}
+                            Обсуждений: {{ member.topic_count }}
+
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    {% endfor %}
+
 {% endblock content %}
 
 {% block sidebar %}

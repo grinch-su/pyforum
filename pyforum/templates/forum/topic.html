@@ -1,9 +1,21 @@
 {% extends "layout.html" %}
 
-{% block title %} Заголовок обсуждения {% endblock title %}
+{% block title %}
+    {{ topic.title }}
+{% endblock title %}
 
 {% block content %}
-
+    <h1>{{ topic.title }}</h1>
+    <p class="text-muted">{{ topic.date_created }}</p>
+    <p>{{ topic.content }}</p>
+    <hr>
+    <h3>Ответить: </h3>
+    <form action="" role="form" method="POST">
+        <div class="form-group">
+            {{ form.content(class = 'ckeditor') }}
+        </div>
+        {{ form.submit(class = "btn btn-primary") }}
+    </form>
 {% endblock content %}
 
 {% block sidebar %}

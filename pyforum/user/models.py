@@ -8,14 +8,13 @@ from pyforum import db
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
-    id = db.Column(db.Integer, primary_key=True)
-
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
-    ip = db.Column(db.String, nullable=False)
-    date_joined = db.Column(db.DateTime, default=datetime.utcnow)
-    last_visit = db.Column(db.DateTime, default=datetime.utcnow)
+    ip = db.Column(db.String)
+    date_joined = db.Column(db.DateTime)
+    last_visit = db.Column(db.DateTime)
     birth_day = db.Column(db.DateTime)
     gender = db.Column(db.String(20))
     web_site = db.Column(db.String(150))
@@ -25,18 +24,38 @@ class User(db.Model, UserMixin):
     activated = db.Column(db.Boolean, default=False)
 
     theme = db.Column(db.String)
-    language = db.Column(db.String, default='en')
+    language = db.Column(db.String, default='ru')
 
     post_count = db.Column(db.Integer, default=0)
     topic_count = db.Column(db.Integer, default=0)
+
 
     def __init__(self, username, email, password):
         self.username = username
         self.email = email
         self.password = password
+        self.date_joined = datetime.utcnow
+
+
+    # def is_authenticated(self):
+    #     return True
+    #
+    # def is_active(self):
+    #     return True
+    #
+    # def is_anonymous(self):
+    #     return False
+    #
+    # def get_id(self):
+    #     return self.id
 
     def __repr__(self):
-        return '<User {} {} {}>'.format(self.username, self.email, self.password)
+        return '<Username - {}, email - {}, password - {}, joined - {}>'.format(
+            self.username,
+            self.email,
+            self.password,
+            self.date_joined
+        )
 
 
 class Group(db.Model):

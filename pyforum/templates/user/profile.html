@@ -1,4 +1,37 @@
 {% extends "layout.html" %}
+
 {% block title %}
-    Профиль
-{% endblock title%}
+    {{ title }}{{ user.username }}
+{% endblock title %}
+
+{% block content %}
+    <h1>Имя пользоавтеля: {{ user.username }}</h1>
+    <p>Эл. адрес: {{ user.email }}</p>
+    <img src="" alt="{{ user.avatar }}">
+    <p>IP: {{ user.ip }}</p>
+    <p>Пол: {{ user.gender }}</p>
+    <p>Веб-сайт: <a href="{{ user.web_site }}" target="_blank">{{ user.web_site }}</a></p>
+
+    {% if user.activated %}
+        <p style="color: green;">Аккаунт активирован</p>
+    {% else %}
+        <p style="color: red;">Аккаунт не активирован</p>
+    {% endif %}
+
+    <p>Тема: {{ user.theme }}</p>
+
+    <p>Язык: {{ user.language }}</p>
+    <p>Кол-во постов: {{ user.post_count }}</p>
+    <p>Кол-во обсуждений: {{ user.topic_count }}</p>
+    <p>Дата регистрации: {{ user.date_joined }}</p>
+    {% if user.last_visit == None %}
+        Не посещял форум
+    {% else %}
+        <p>Последняя активность: {{ user.last_visit }}</p>
+    {% endif %}
+
+{% endblock  content %}
+
+{% block sidebar %}
+
+{% endblock sidebar %}
