@@ -1,6 +1,13 @@
 from flask import render_template, redirect, url_for, Response
+from flask_login import current_user
+
 from pyforum.general import general
 from pyforum.general.forms import SearchForm
+
+
+@general.before_request
+def before_request():
+    g.user = current_user
 
 
 @general.route('search', methods=['GET','POST'])

@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
     ip = db.Column(db.String)
-    date_joined = db.Column(db.DateTime)
+    date_joined = db.Column(db.DateTime, default=datetime.utcnow)
     last_visit = db.Column(db.DateTime)
     birth_day = db.Column(db.DateTime)
     gender = db.Column(db.String(20))
@@ -22,6 +22,8 @@ class User(db.Model, UserMixin):
     signature = db.Column(db.String(500))
     avatar = db.Column(db.String)
     activated = db.Column(db.Boolean, default=False)
+    # status = db.Column(db.String)
+    # online_status = db.Column(db.Boolean, default=False)
 
     theme = db.Column(db.String)
     language = db.Column(db.String, default='ru')
@@ -29,25 +31,22 @@ class User(db.Model, UserMixin):
     post_count = db.Column(db.Integer, default=0)
     topic_count = db.Column(db.Integer, default=0)
 
-
     def __init__(self, username, email, password):
         self.username = username
         self.email = email
         self.password = password
-        self.date_joined = datetime.utcnow
 
+    def is_authenticated(self):
+        return True
 
-    # def is_authenticated(self):
-    #     return True
-    #
-    # def is_active(self):
-    #     return True
-    #
-    # def is_anonymous(self):
-    #     return False
-    #
-    # def get_id(self):
-    #     return self.id
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return self.id
 
     def __repr__(self):
         return '<Username - {}, email - {}, password - {}, joined - {}>'.format(

@@ -1,24 +1,39 @@
 from flask import render_template, abort, redirect, url_for, request, flash, g
-from flask_login import  login_required
+from flask_login import  login_required, current_user
 
 from pyforum import db
 from pyforum.forum import forum
 from pyforum.forum.forms import NewTaskForm, NewPostForm
 from pyforum.forum.models import Topic, Category, Post, Tag
+from pyforum.user.models import User
+
+
+@forum.before_request
+def before_request():
+    g.user = current_user
+
 
 
 @forum.route('/', methods=['GET'])
 def topics():
-    topics = Topic.query.all()
+    topics = Topic.query.order_by(Topic.date_created.desc()).all()
+    members = User.query.count()
+    count_posts = Post.query.count()
+    latest_member = User.query.order_by(User.date_joined.desc()).limit(1).all()
     return render_template('forum/topics.html',
                            title='Обсуждения',
-                           topics = topics
+                           topics = topics,
+                           members = members,
+                           latest_member = latest_member,
+                           count_posts = count_posts
                            )
 
 
 @forum.route('topic/new', methods=['GET', 'POST'])
-@login_required
 def create_topic():
+    if not current_user.is_authenticated:
+        flash('Войдите в систему что-бы создать обсуждение!','error')
+        return redirect(url_for('forum.topics'))
     form = NewTaskForm()
     if request.method == 'POST':
         if not form.title.data:

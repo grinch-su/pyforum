@@ -11,27 +11,85 @@
     <p>IP: {{ user.ip }}</p>
     <p>Пол: {{ user.gender }}</p>
     <p>Веб-сайт: <a href="{{ user.web_site }}" target="_blank">{{ user.web_site }}</a></p>
-
     {% if user.activated %}
         <p style="color: green;">Аккаунт активирован</p>
     {% else %}
         <p style="color: red;">Аккаунт не активирован</p>
     {% endif %}
-
     <p>Тема: {{ user.theme }}</p>
-
     <p>Язык: {{ user.language }}</p>
-    <p>Кол-во постов: {{ user.post_count }}</p>
-    <p>Кол-во обсуждений: {{ user.topic_count }}</p>
-    <p>Дата регистрации: {{ user.date_joined }}</p>
+    <p>Кол-во постов: {{ posts | count }}</p>
+    <p>Кол-во обсуждений: {{ topics | count }}</p>
+    <p>Дата регистрации: {{ user.date_joined.strftime('%d-%m-%Y в %H:%M %p') }}</p>
     {% if user.last_visit == None %}
-        Не посещял форум
     {% else %}
-        <p>Последняя активность: {{ user.last_visit }}</p>
+        <p>Последняя активность: {{ user.last_visit.strftime('%d-%m-%Y в %H:%M %p') }}</p>
     {% endif %}
-
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#topics" aria-controls="topics" role="tab" data-toggle="tab">Обсжудения</a></li>
+        <li role="presentation"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">Ответы</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="topics">
+            <ul class="list-group">
+                {% for topic in topics %}
+                    <li class="list-group-item">
+                        <div class="media">
+                            <div class="media-left media-middle">
+                                <a href="{{ url_for('user.show_profile_user', user_id=topic.user_id) }}">
+                                    <img class="media-object" height="24" width="24" alt="" src="">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <a href="{{ url_for('forum.topic', topic_id = topic.id) }}">
+                                    <h4 class="media-heading">{{ topic.title }}</h4>
+                                </a>
+                                <p>Дата создания: {{ topic.date_created.strftime('%d-%m-%Y в %H:%M %p') }}</p>
+                                <p class="text-muted">
+                                    Ответов:
+                                    Просмотров:
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% if topics | count == 0 %}
+                <p>Пользователь не создавал обсуждений</p>
+            {% endif %}
+        </div>
+        <div role="tabpanel" class="tab-pane " id="posts">
+                <ul class="list-group">
+                    {% for post in posts %}
+                        <li class="list-group-item">
+                            <div class="media">
+                                <div class="media-left media-middle">
+                                    <a href="#">
+                                        <img class="media-object" height="24" width="24" alt="" src="">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">В обсуждении <a href="">Название обсуждения</a></h4>
+                                    <p class="text-muted">
+                                        Автор обсуждения: Автор обсуждения
+                                    </p>
+                                    <p>{{ post.content | safe}}</p>
+                                    <p class="text-muted">
+                                        Дата: {{ post.timestamp.strftime('%d-%m-%Y в %H:%M %p') }}
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% if posts | count == 0 %}
+                <p>Пользователь не отвечал</p>
+            {% endif %}
+        </div>
+  </div>
 {% endblock  content %}
 
 {% block sidebar %}
-
 {% endblock sidebar %}

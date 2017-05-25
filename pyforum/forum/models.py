@@ -9,8 +9,8 @@ class Topic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(length=200))
     content = db.Column(db.Text, nullable=False)
-    date_created = db.Column(db.DateTime)
-    date_last_changes = db.Column(db.DateTime)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    date_last_changes = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     views = db.Column(db.Integer, default=0)
     locked = db.Column(db.Boolean, default=False)
@@ -20,8 +20,6 @@ class Topic(db.Model):
     def __init__(self, title,content):
         self.title = title
         self.content = content
-        self.date_created = datetime.utcnow
-        self.date_last_changes = datetime.utcnow
 
 
     def __repr__(self):

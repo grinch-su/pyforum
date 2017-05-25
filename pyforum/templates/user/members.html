@@ -7,13 +7,13 @@
 {% block content %}
     <h4>Участники</h4>
 
-    {% for member in members %}
-        <ul class="list-group">
+    <ul class="list-group">
+        {% for member in members %}
             <li class="list-group-item">
                 <div class="media">
                     <div class="media-left media-middle">
                         <a href="{{ url_for('user.show_profile_user', user_id = member.id) }}">
-                            <img class="media-object" height="24" width="24" alt="" src="">
+                            <img class="media-object" height="35" width="35" alt="" src="">
                         </a>
                     </div>
                     <div class="media-body">
@@ -29,9 +29,8 @@
                     </div>
                 </div>
             </li>
-        </ul>
-    {% endfor %}
-
+        {% endfor %}
+    </ul>
 {% endblock content %}
 
 {% block sidebar %}

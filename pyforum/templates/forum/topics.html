@@ -6,37 +6,29 @@
 <!-- Block content -->
 {% block content %}
     <a class="btn btn-primary" href="{{ url_for('forum.create_topic') }}">Создать обсуждение</a>
-    <table class="table table-hover">
-        <thead>
-            <th><a href="#">Название</a></th>
-            <th><a href="#">Дата</a></th>
-            <th><a href="#">Ответов</a></th>
-            <th><a href="#">Просмотров</a></th>
-        </thead>
-        <tbody>
-            {% for topic in topics %}
-            <tr class="">
-                    <td>
-                        <div class="media">
-                            <div class="media-left media-middle">
-                                <a href="{{ url_for('user.show_profile_user', user_id=topic.user_id) }}">
-                                    <img class="media-object" height="24" width="24" src="" alt="">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="{{ url_for('forum.topic', topic_id = topic.id) }}">
-                                    <h4 class="media-heading">{{ topic.title }}</h4>
-                                </a>
-                            </div>
-                        </div>
-                    </td>
-                    <td>{{ topic.date_created }} </td>
-                    <td>{{ topic.amount }}</td>
-                    <td>{{ topic.views }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <ul class="list-group" style="margin-top: 1%">
+        {% for topic in topics %}
+            <li class="list-group-item">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="{{ url_for('user.show_profile_user', user_id=topic.user_id) }}">
+                            <img class="media-object" height="35" width="35" alt="" src="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <a href="{{ url_for('forum.topic', topic_id = topic.id) }}">
+                            <h4 class="media-heading">{{ topic.title }}</h4>
+                        </a>
+                        <p>{{ topic.date_created.strftime('%d-%m-%Y в %H:%M %p') }}</p>
+                        <p class="text-muted">
+                            Постов: -
+                            Просмотров: -
+                        </p>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock content %}
 
 <!-- Block sidebar -->
@@ -62,15 +54,19 @@
     <ul class="list-group">
         <li class="list-group-item">
             Обсуждений
-            <span class="badge">0</span>
+            <span class="badge">{{ topics|length}}</span>
         </li>
         <li class="list-group-item">
-            Сообщений
-            <span class="badge">0</span>
+            Ответов
+            <span class="badge">{{ count_posts }}</span>
         </li>
         <li class="list-group-item">
             Участников
-            <span class="badge">0</span>
+            <span class="badge">{{ members }}</span>
+        </li>
+        <li class="list-group-item">
+            Новый участник
+            <a class="badge" href="{{ url_for('user.show_profile_user',user_id = latest_member[0].id) }}"><span class="">{{ latest_member[0].username }}</span></a>
         </li>
     </ul>
 {% endblock sidebar %}

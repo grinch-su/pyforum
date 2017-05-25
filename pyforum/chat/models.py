@@ -4,11 +4,11 @@ from pyforum import db
 
 
 class ChatRoom(db.Model):
-    __tablename__ = 'chat_room'
+    __tablename__ = 'chat_rooms'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True)
-    creator_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    creator_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     created_datetime = db.Column(db.DateTime, default=datetime.utcnow)
 
     user = db.relationship('User', backref=db.backref('chat_rooms', lazy='dynamic'))
@@ -23,7 +23,7 @@ class ChatRoom(db.Model):
 
 
 class ChatMessage(db.Model):
-    __tablename__ = 'chat_message'
+    __tablename__ = 'chat_messages'
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

@@ -2,8 +2,14 @@ from os import environ
 
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
-from flask_login import LoginManager
+from flask_login import LoginManager, AnonymousUserMixin
 from flask_mail import Mail
+
+class Anonymous(AnonymousUserMixin):
+    def __init__(self):
+        self.id = 0
+        self.username = 'Guest'
+
 
 app = Flask(__name__)
 
@@ -13,18 +19,22 @@ app.config.from_object(environ['APP_SETTINGS'])
 
 ### extensions for flask ###
 # Database
-db = SQLAlchemy(app)
+db = SQLAlchemy()
+db.init_app(app)
 # Auth
-login_manager = LoginManager(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'user.log_in'
+login_manager.anonymous_user = Anonymous
 # Mail
-mail = Mail(app)
-
+mail = Mail()
+mail.init_app(app)
 # debugging
 if app.debug:
     try:
         from flask_debugtoolbar import DebugToolbarExtension
-
-        toolbar = DebugToolbarExtension(app)
+        toolbar = DebugToolbarExtension()
+        toolbar.init_app(app)
     except:
         pass
 

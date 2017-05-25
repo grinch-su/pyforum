@@ -15,6 +15,9 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = "postgresql://postgres:8497@localhost/forum"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
+    # Flask-Mail
+    # Flask-Login
+    DEBUG_TB_INTERCEPT_REDIRECTS = False
     # reCAPTCHA
     RECAPTCHA_PUBLIC_KEY = '6LfM0CEUAAAAALbGsC_3zUk0-A9Hx2zWip1CVVe6'
     RECAPTCHA_PRIVATE_KEY = '6LfM0CEUAAAAAC8uRKYCbgsQscMkbgvIfiFcj2pB'
