@@ -12,7 +12,7 @@ class Config(object):
     # SQLAlchemy
     # SQLALCHEMY_DATABASE_URI = (environ['DATABASE_URL'])
     # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')
-    SQLALCHEMY_DATABASE_URI = "postgresql://postgres:8497@localhost/forum"
+    SQLALCHEMY_DATABASE_URI = "postgresql://postgres:8497@localhost/forum" or 'sqlite:///' + os.path.join(BASE_DIR, 'forum.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
     # Flask-Mail
