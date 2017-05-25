@@ -7,5 +7,3 @@ Flask-SQLAlchemy==2.2
 Flask-WTF==0.14.2
 flaskckeditor==1.6
 ipython==5.3.0
-ipython-genutils==0.2.0
-itsdangerous==0.24
