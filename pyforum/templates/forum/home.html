@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>{{ title | title }}<small></small></h1>
+        {% if g.user.is_authenticated %}
+            <a class="btn btn-primary" href="{{ url_for('forum.create_topic') }}">{{ _('Создать обсуждение') }}</a>
+        {% else %}
+            <div class="alert alert-info" role="alert">
+            Чтобы создать обсуждение, пожалуйста
+            <a href="{{ url_for('user.log_in') }}" class="alert-link">авторизуйтесь</a>
+            или
+            <a href="{{ url_for('user.sign_up') }}" class="alert-link">зарегистрируйтесь.</a>
+        </div>
+        {% endif %}
+    </div>
+    <ul class="list-group">
+        {% for category in categories %}
+            <li class="list-group-item">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                    </div>
+                    <div class="media-body">
+                        <a href="{{ url_for('forum.category',category_name=category.name) }}">
+                            <h4 class="media-heading">{{ category.name | title }}</h4>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block sidebar %}
+    <h4>{{ _('Новые обсуждения') }}</h4>
+        <ul class="list-group">
+            {% for new_topic in new_topics %}
+                <li class="list-group-item">
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <a href="{{ url_for('user.show_profile_user',user_id=new_topic.user_id) }}">
+                                <img class="media-object" height="27" width="27" src="{{ url_for('static', filename="img/favicon.png") }}" alt="">
+                            </a>
+                        </div>
+                        <div class="media-body new-topics">
+                            <a href="{{ url_for('forum.topic',category_name=new_topic.category.name,topic_id = new_topic.id,page=1)}}">
+                                <p class="media-heading text-muted">{{ new_topic.title | truncate(30, False, '...',0)}}</p>
+                            </a>
+                            <p class="text-muted">
+                                {{ new_topic.date_created.strftime('%d-%m-%Y в %H:%M') }}
+                            </p>
+                            <a href="{{ url_for('forum.category',category_name=new_topic.category.name, page=1) }}">
+                                <p class="text-muted">{{ new_topic.category.name }}</p>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    <h4>{{ _('Статистика') }}</h4>
+    <ul class="list-group">
+        <li class="list-group-item">
+            {{ _('Обсуждений') }}
+            <span class="badge">{{ count_topics }}</span>
+        </li>
+        <li class="list-group-item">
+            {{ _('Ответов') }}
+            <span class="badge">{{ count_replies }}</span>
+        </li>
+        <li class="list-group-item">
+            {{ _('Участников') }}
+            <span class="badge">{{ count_members }}</span>
+        </li>
+        {% if latest_member == none %}
+        {% else %}
+            <li class="list-group-item">
+                {{ _('Новый участник') }}
+                <a class="badge" href="{{ url_for('user.show_profile_user',user_id = latest_member.id) }}">
+                    <span class="">
+                        {{ latest_member.username}}
+                    </span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+{% endblock %}

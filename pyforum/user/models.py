@@ -6,7 +6,7 @@ from pyforum import db
 
 
 class User(db.Model, UserMixin):
-    __tablename__ = 'users'
+    __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     username = db.Column(db.String(50), unique=True, nullable=False)
@@ -16,20 +16,19 @@ class User(db.Model, UserMixin):
     date_joined = db.Column(db.DateTime, default=datetime.utcnow)
     last_visit = db.Column(db.DateTime)
     birth_day = db.Column(db.DateTime)
-    gender = db.Column(db.String(20))
-    web_site = db.Column(db.String(150))
-    location = db.Column(db.String(100))
-    signature = db.Column(db.String(500))
+    web_site = db.Column(db.String(100))
+    signature = db.Column(db.Text)
     avatar = db.Column(db.String)
     activated = db.Column(db.Boolean, default=False)
-    # status = db.Column(db.String)
-    # online_status = db.Column(db.Boolean, default=False)
+    status = db.Column(db.String)
+    online_status = db.Column(db.Boolean, default=False)
 
-    theme = db.Column(db.String)
-    language = db.Column(db.String, default='ru')
+    member = db.Column(db.Boolean, default=True)
+    admin = db.Column(db.Boolean, default=False)
 
-    post_count = db.Column(db.Integer, default=0)
-    topic_count = db.Column(db.Integer, default=0)
+    tags = db.relationship('Tag', backref='user', lazy='dynamic')
+    replies = db.relationship('Reply', backref='user', lazy='dynamic')
+    topics = db.relationship('Topic', backref='user', lazy='dynamic')
 
     def __init__(self, username, email, password):
         self.username = username
@@ -49,29 +48,9 @@ class User(db.Model, UserMixin):
         return self.id
 
     def __repr__(self):
-        return '<Username - {}, email - {}, password - {}, joined - {}>'.format(
+        return '<User Username - {}, email - {}, password - {}, joined - {}>'.format(
             self.username,
             self.email,
             self.password,
             self.date_joined
         )
-
-
-class Group(db.Model):
-    __tablename__ = 'group'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, unique=True, nullable=False)
-
-    # group types
-    banned = db.Column(db.Boolean, default=False, nullable=False)
-    guest = db.Column(db.Boolean, default=False, nullable=False)
-    user = db.Column(db.Boolean, default=False, nullable=False)
-    moderator = db.Column(db.Boolean, default=False, nullable=False)
-    admin = db.Column(db.Boolean, default=False, nullable=False)
-
-    def __init__(self, name):
-        self.name = name
-
-    def __repr__(self):
-        return '<Group {}>'.format(self.name)

@@ -12,14 +12,14 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="selectRadio" class="col-sm-2 control-label">У вас уже есть аккаунт?</label>
+            <label for="selectRadio" class="col-sm-2 control-label">{{ _('У вас уже есть аккаунт?') }}</label>
             <div class="col-sm-10">
                 <div class="btn-group " data-toggle="buttons">
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option1" autocomplete="off">Нет, создать аккаунт сейчас.
+                        <input type="radio" name="options" id="option1" autocomplete="off">{{ _('Нет, создать аккаунт сейчас.') }}
                     </label>
                     <label class="btn btn-primary active">
-                        <input type="radio" name="options" id="option2" autocomplete="off" checked>Да, мой пароль:
+                        <input type="radio" name="options" id="option2" autocomplete="off" checked>{{ _('Да, мой пароль:') }}
                     </label>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 {{ form.password(class="form-control", placeholder="Пароль") }}
                 <small>
                     <label id="forgotPassword" for="inputPassword">
-                        <a href="#" data-toggle="modal" data-target=".forgotModal">Забыли пароль?</a>
+                        <a href="#" data-toggle="modal" data-target=".forgotModal">{{ _('Забыли пароль?') }}</a>
                     </label>
                 </small>
             </div>

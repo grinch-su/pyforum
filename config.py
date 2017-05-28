@@ -9,16 +9,27 @@ class Config(object):
     TESTING = False
     SECRET_KEY = ''
     CSRF_ENABLED = True
-    # SQLAlchemy
-    # SQLALCHEMY_DATABASE_URI = (environ['DATABASE_URL'])
-    # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')
+
+    # SQLAlchemy for db
     SQLALCHEMY_DATABASE_URI = "postgresql://postgres:8497@localhost/forum"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
+
     # Flask-Mail
-    # Flask-Login
+
+    # Flask-Login for auth
     DEBUG_TB_INTERCEPT_REDIRECTS = False
-    # reCAPTCHA
+
+    # Flask-babel for localization
+    SUPPORTED_LANGUAGES = {
+        'en': 'English',
+        'ru': 'Russian',
+        'md': 'Moldavian'
+    }
+    BABEL_DEFAULT_LOCALE = "en"
+    BABEL_DEFAULT_TIMEZONE = "UTC"
+
+    #  reCAPTCHA
     RECAPTCHA_PUBLIC_KEY = '6LfM0CEUAAAAALbGsC_3zUk0-A9Hx2zWip1CVVe6'
     RECAPTCHA_PRIVATE_KEY = '6LfM0CEUAAAAAC8uRKYCbgsQscMkbgvIfiFcj2pB'
 
@@ -36,10 +47,3 @@ class TestingConfig(Config):
 class ProductionConfig(Config):
     DEBUG = False
     SECRET_KEY = '\x05\xac!\xf68\xda\x1a\x8fE\x8c\xfemoN#O\xeccQ\xae\xe8+\xab\x16'
-
-
-config = {
-    'dev': DevelopmentConfig,
-    'prod': ProductionConfig,
-    'test': TestingConfig
-}

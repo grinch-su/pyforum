@@ -5,18 +5,91 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>{{ topic.title }}</h1>
-    <a href="{{ url_for('user.show_profile_user',user_id = topic.user_id) }}"><img src="" width="35" height="35"></a>
-    <p class="text-muted">{{ topic.date_created.strftime('%d-%m-%Y в %H:%M %p') }}</p>
-    <p>{{ topic.content | safe }}</p>
-    <hr>
-    <h3>Ответить: </h3>
-    <form action="" role="form" method="POST">
-        <div class="form-group">
-            {{ form.content(class = 'ckeditor') }}
+    <div class="page-header">
+        <h2>{{ topic.title }}<small></small></h2>
+        <span class="glyphicon glyphicon-tags" aria-hidden="true">
+        {% for tag in tags %}
+            {{ tag }}
+        {% endfor %}
+
+        </span>
+        <p>Автор:
+            <a href="{{ url_for('user.show_profile_user',user_id=topic.user.id) }}">
+                <span class="label label-success">{{ topic.user.username }}
+                </span>
+            </a>
+        </p>
+        <p>{{ topic.date_created.strftime('%d-%m-%Y в %H:%M %p') }}</p>
+        <p class="text-muted">
+            {{ _('Ответов: ') }} {{ topic.replies.count() }}
+            {{ _('Просмотров: ') }}{{ topic.views }}
+        </p>
+    </div>
+
+    <ul class="list-group">
+            <li class="list-group-item">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="{{ url_for('user.show_profile_user',user_id=topic.user.id) }}">
+                            <img class="media-object" height="80" width="80" alt="" src="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <p>{{ topic.content | safe }}</p>
+                        <p class="text-muted">{{ topic.date_created }}</p>
+                    </div>
+                </div>
+            </li>
+
+            {% for reply in replies.items %}
+            <li class="list-group-item">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="{{ url_for('user.show_profile_user',user_id=reply.user.id) }}">
+                            <img class="media-object" height="80" width="80" alt="" src="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <p>{{ reply.content | safe }}</p>
+                        <p class="text-muted">{{ reply.date_created }}</p>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+    </ul>
+    <nav aria-label="...">
+        <ul class="pager">
+            {% if replies.has_prev %}
+                <li class="previous"><a href="{{ url_for('forum.topic',category_name=category.name, topic_id=topic.id, page=replies.prev_num) }}"><span aria-hidden="true">&larr;</span> Older</a></li>
+            {% else %}
+                <li class="previous disabled"><a href=""><span aria-hidden="true">&larr;</span> Older</a></li>
+            {% endif %}
+
+            {% if replies.has_next %}
+                <li class="next"><a href="{{ url_for('forum.topic',category_name=category.name, topic_id=topic.id,  page=replies.next_num) }}">Newer <span aria-hidden="true">&rarr;</span></a></li>
+            {% else %}
+                <li class="next disabled"><a href="">Newer<span aria-hidden="true">&rarr;</span></a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    {% if g.user.is_authenticated %}
+        <form action="" role="form" method="POST">
+            <div class="form-group">
+                {{ form.content(class = 'ckeditor') }}
+            </div>
+            {{ form.submit(class = "btn btn-primary") }}
+        </form>
+
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            Чтобы оставить ответ, пожалуйста
+            <a href="{{ url_for('user.log_in') }}" class="alert-link">авторизуйтесь</a>
+            или
+            <a href="{{ url_for('user.sign_up') }}" class="alert-link">зарегистрируйтесь.</a>
         </div>
-        {{ form.submit(class = "btn btn-primary") }}
-    </form>
+    {% endif %}
+
 {% endblock content %}
 
 {% block sidebar %}

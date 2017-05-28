@@ -1,11 +1,13 @@
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField, SubmitField, StringField
+from wtforms import TextAreaField, SubmitField, StringField, SelectField
 from flaskckeditor import CKEditor
+
 
 class NewTaskForm(FlaskForm, CKEditor):
     title = StringField()
     content = TextAreaField()
     submit = SubmitField('Создать')
+
 
 class NewPostForm(FlaskForm, CKEditor):
     content = TextAreaField()

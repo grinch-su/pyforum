@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+<!-- block title -->
+{% block title %}
+    {{ title | title}}
+{% endblock title %}
+
+<!-- Block content -->
+{% block content %}
+    <div class="page-header">
+        <h1>{{ title | title }}<small></small></h1>
+    </div>
+
+    <ul class="list-group">
+        {% for topic in topics.items %}
+            <li class="list-group-item">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="{{ url_for('user.show_profile_user', user_id=topic.user_id) }}">
+                            <img class="media-object" height="35" width="35" alt="" src="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <a href="{{ url_for('forum.topic',category_name=category.name, topic_id=topic.id, page=1) }}">
+                            <h4 class="media-heading">{{ topic.title }}</h4>
+                        </a>
+                        <p>
+                            Автор:
+                            <a href="{{ url_for('user.show_profile_user',user_id=topic.user.id) }}">
+                                <span class="label label-success">
+                                    {{ topic.user.username }}
+                                </span>
+                            </a>
+                        </p>
+                        <p>{{ topic.date_created.strftime('%d-%m-%Y в %H:%M %p') }}</p>
+                        <p class="text-muted">
+                            Постов: {{ topic.replies.count() }}
+                            Просмотров: {{ topic.views }}
+                        </p>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    <nav aria-label="...">
+        <ul class="pager">
+            {% if topics.has_prev %}
+                <li class="previous"><a href="{{ url_for('forum.category',category_name=category.name, page=topics.prev_num) }}"><span aria-hidden="true">&larr;</span> Older</a></li>
+            {% else %}
+                <li class="previous disabled"><a href=""><span aria-hidden="true">&larr;</span> Older</a></li>
+            {% endif %}
+
+            {% if topics.has_next %}
+                <li class="next"><a href="{{ url_for('forum.category',category_name=category.name, page=topics.next_num) }}">Newer <span aria-hidden="true">&rarr;</span></a></li>
+            {% else %}
+                <li class="next disabled"><a href="">Newer<span aria-hidden="true">&rarr;</span></a></li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock content %}
+
+<!-- Block sidebar -->
+{% block sidebar %}
+
+{% endblock sidebar %}

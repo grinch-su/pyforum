@@ -5,30 +5,27 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>Имя пользоавтеля: {{ user.username }}</h1>
-    <p>Эл. адрес: {{ user.email }}</p>
-    <img src="" alt="{{ user.avatar }}">
-    <p>IP: {{ user.ip }}</p>
-    <p>Пол: {{ user.gender }}</p>
-    <p>Веб-сайт: <a href="{{ user.web_site }}" target="_blank">{{ user.web_site }}</a></p>
+    <h4>{{ _('Имя пользоавтеля:') }}{{ user.username }}</h4>
+    <p>{{ _('Эл. адрес:') }}{{ user.email }}</p>
     {% if user.activated %}
-        <p style="color: green;">Аккаунт активирован</p>
+        <p style="color: green;">{{ _('Аккаунт активирован') }}</p>
     {% else %}
-        <p style="color: red;">Аккаунт не активирован</p>
+        <p style="color: red;">{{ _('Аккаунт не активирован') }}</p>
     {% endif %}
-    <p>Тема: {{ user.theme }}</p>
-    <p>Язык: {{ user.language }}</p>
-    <p>Кол-во постов: {{ posts | count }}</p>
-    <p>Кол-во обсуждений: {{ topics | count }}</p>
-    <p>Дата регистрации: {{ user.date_joined.strftime('%d-%m-%Y в %H:%M %p') }}</p>
+    <img src="" width="100" height="100" alt="{{ user.avatar }}">
+    <p>IP: {{ user.ip }}</p>
+    <p>Веб-сайт: <a href="{{ user.web_site }}" target="_blank">{{ user.web_site }}</a></p>
+    <p>{{ _('Кол-во ответов:') }}{{ replies | count }}</p>
+    <p>{{ _('Кол-во обсуждений:') }}{{ topics | count }}</p>
+    <p>{{ _('Дата регистрации:') }}{{ user.date_joined.strftime('%d-%m-%Y в %H:%M %p') }}</p>
     {% if user.last_visit == None %}
     {% else %}
-        <p>Последняя активность: {{ user.last_visit.strftime('%d-%m-%Y в %H:%M %p') }}</p>
+        <p>{{ _('Последняя активность:') }}{{ user.last_visit.strftime('%d-%m-%Y в %H:%M %p') }}</p>
     {% endif %}
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#topics" aria-controls="topics" role="tab" data-toggle="tab">Обсжудения</a></li>
-        <li role="presentation"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">Ответы</a></li>
+        <li role="presentation" class="active"><a href="#topics" aria-controls="topics" role="tab" data-toggle="tab">{{ _('Обсжудения') }}</a></li>
+        <li role="presentation"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">{{ _('Ответы') }}</a></li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
@@ -43,13 +40,13 @@
                                 </a>
                             </div>
                             <div class="media-body">
-                                <a href="{{ url_for('forum.topic', topic_id = topic.id) }}">
+                                <a href="{{ url_for('forum.topic',category_name=topic.category.name,topic_id = topic.id,page=1) }}">
                                     <h4 class="media-heading">{{ topic.title }}</h4>
                                 </a>
-                                <p>Дата создания: {{ topic.date_created.strftime('%d-%m-%Y в %H:%M %p') }}</p>
+                                <p>{{ _('Дата создания:') }}{{ topic.date_created.strftime('%d-%m-%Y в %H:%M %p') }}</p>
                                 <p class="text-muted">
-                                    Ответов:
-                                    Просмотров:
+                                    {{ _('Ответов:') }}{{ topic.replies.count() }}
+                                    {{ _('Просмотров:') }}{{ topic.views }}
                                 </p>
                             </div>
                         </div>
@@ -57,12 +54,12 @@
                 {% endfor %}
             </ul>
             {% if topics | count == 0 %}
-                <p>Пользователь не создавал обсуждений</p>
+                <p>{{ _('Пользователь не создавал обсуждений') }}</p>
             {% endif %}
         </div>
         <div role="tabpanel" class="tab-pane " id="posts">
                 <ul class="list-group">
-                    {% for post in posts %}
+                    {% for reply in replies %}
                         <li class="list-group-item">
                             <div class="media">
                                 <div class="media-left media-middle">
@@ -71,21 +68,25 @@
                                     </a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading">В обсуждении <a href="">Название обсуждения</a></h4>
+                                    <h4 class="media-heading">{{ _('В обсуждении ') }}
+                                        <a href="{{ url_for('forum.topic', category_name=reply.topic.category.name, topic_id = reply.topic.id,page=1) }}">
+                                            {{ reply.topic.title }}
+                                        </a>
+                                    </h4>
                                     <p class="text-muted">
-                                        Автор обсуждения: Автор обсуждения
+                                        {{ _('Автор обсуждения: ') }}{{ user.username }}
                                     </p>
-                                    <p>{{ post.content | safe}}</p>
                                     <p class="text-muted">
-                                        Дата: {{ post.timestamp.strftime('%d-%m-%Y в %H:%M %p') }}
+                                        {{ _('Дата:') }}{{ reply.date_created.strftime('%d-%m-%Y в %H:%M %p') }}
                                     </p>
+                                    <p>{{ reply.content | safe}}</p>
                                 </div>
                             </div>
                         </li>
                     {% endfor %}
                 </ul>
-            {% if posts | count == 0 %}
-                <p>Пользователь не отвечал</p>
+            {% if replies | count == 0 %}
+                <p>{{ _('Пользователь не отвечал') }}</p>
             {% endif %}
         </div>
   </div>

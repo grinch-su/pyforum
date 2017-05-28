@@ -4,30 +4,27 @@ from pyforum import db
 
 
 class Dialog(db.Model):
-    __tablename__='dialog'
+    __tablename__ = 'dialog'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    to_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    from_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    timestamp = db.Column(db.Integer, default=datetime.utcnow)
+    name = db.Column(db.String)
 
-    def __init__(self, ):
-        pass
+    def __init__(self, name):
+        self.name = name
 
     def __repr__(self):
-        return '<  >'.format()
+        return '<Dialog {}>'.format(self.name)
 
 
 class Message(db.Model):
-    __tablename__='message'
+    __tablename__ = 'message'
+
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.Text, nullable=False)
-    timestamp = db.Column(db.Integer, default=datetime.utcnow)
-    dialog_id = db.Column(db.Integer, db.ForeignKey('dialogs.id'), nullable=False)
+    date_created = db.Column(db.Integer, default=datetime.utcnow)
 
-    def __init__(self, ):
-        pass
+    def __init__(self, message):
+        self.message = message
 
     def __repr__(self):
-        pass
+        return '<Message {}>'.format(self.message)
