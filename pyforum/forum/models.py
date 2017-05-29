@@ -10,6 +10,7 @@ class Category(db.Model):
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
     topics = db.relationship('Topic', backref='category', lazy='dynamic')
+    replies = db.relationship('Reply', backref='category', lazy='dynamic')
 
     def __init__(self, name,description):
         self.name = name
@@ -53,6 +54,7 @@ class Reply(db.Model):
     date_created = db.Column(db.DateTime,default=datetime.utcnow)
     date_last_changes = db.Column(db.DateTime)
 
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
     topic_id = db.Column(db.Integer, db.ForeignKey('topic.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 

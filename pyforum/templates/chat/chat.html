@@ -1,11 +1,13 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Чат
+    {{ title }}
 {% endblock title%}
 
 {% block content %}
-    <h3>Чат</h3>
+    <div class="page-header">
+        <h2>{{ title }}</h2>
+    </div>
 {% endblock %}
 
 {% block sidebar %}

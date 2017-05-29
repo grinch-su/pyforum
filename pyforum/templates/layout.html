@@ -38,9 +38,12 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ g.user.username }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url_for('user.show_profile_user', user_id = g.user.id) }}">Профиль</a></li>
+                            <li><a href="{{ url_for('user.show_profile_user', username = g.user.username) }}">Профиль</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="{{ url_for('user.show_profile_user', user_id = g.user.id)}}">Редактировать</a></li>
+                            <li><a href="{{ url_for('user.edit_profile',username=g.user.username) }}">Редактировать</a></li>
+                             {% if g.user.admin %}
+                                 <li><a href="{{ url_for('user.admin')}}">Админ панель</a></li>
+                             {% endif %}
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ url_for('user.log_out') }}">{{ _('Выход') }}</a></li>
                         </ul>
@@ -62,14 +65,14 @@
         </div>
         <div class="row">
             {% with messages = get_flashed_messages() %}
-              {% if messages %}
-                {% for message in messages %}
-                  <div class="alert alert-warning alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    {{message}}
-                  </div>
-                {% endfor %}
-              {% endif %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-warning alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
             {% endwith %}
         </div>
         <div class="row">
@@ -85,15 +88,12 @@
                         <li class="list-group-item">
                             <div class="media">
                                 <div class="media-left media-middle">
-                                    <a href="{{ url_for('user.show_profile_user', user_id = g.user.id) }}">
-                                        <img class="media-object" height="96" width="96" alt="" src="{{ url_for('static', filename='img/favicon.png')}}">
+                                    <a href="{{ url_for('user.show_profile_user', username = g.user.username) }}">
+                                        <img class="img-rounded media-object" height="96" width="96" alt="" src="{{ g.user.avatar(128) }}">
                                     </a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading"><a href="{{ url_for('user.show_profile_user', user_id = g.user.id) }}">{{ g.user.username }}</a></h4>
-                                    <p class="text-muted">
-                                        <span class="glyphicon glyphicon-comment"></span>
-                                    </p>
+                                    <h4 class="media-heading"><a href="{{ url_for('user.show_profile_user', username = g.user.username) }}">{{ g.user.username }}</a></h4>
                                 </div>
                             </div>
                         </li>

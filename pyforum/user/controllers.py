@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from sqlalchemy.types import Integer
+from sqlalchemy.dialects.postgresql import INTEGER
 from flask import render_template, redirect, url_for, Response, jsonify, flash, request, g, current_app, abort
 from flask_login import logout_user, login_required, login_user, current_user, AnonymousUserMixin
 from flask_babel import gettext
@@ -8,7 +10,7 @@ from config import Config
 from pyforum import db, login_manager, app, babel
 from pyforum.user import user
 from pyforum.user.models import User
-from pyforum.forum.models import Topic, Reply
+from pyforum.forum.models import Topic, Reply, Category
 from pyforum.user.forms import SignUpForm, SignInForm, ForgotPasswordForm
 
 
@@ -76,7 +78,7 @@ def sign_up():
 
 @user.route('login', methods=['GET', 'POST'])
 def log_in():
-    if g.user.is_authenticated:
+    if current_user.is_authenticated:
         flash(gettext('Вы уже вошли в систему под ником ') + current_user + '', 'error')
         return redirect(url_for('forum.topics'))
     form = SignInForm()
@@ -96,7 +98,8 @@ def log_in():
     return render_template('user/log_in.html',
                            form=form,
                            forgot_form=forgot_form,
-                           title='Авторизация')
+                           title=(gettext('Авторизация'))
+                           )
 
 
 @user.route('logout', methods=['GET'])
@@ -107,38 +110,49 @@ def log_out():
     return redirect(url_for('forum.index'))
 
 
-@user.route('profile/<int:user_id>', methods=['GET', 'POST'])
+@user.route('profile/<string:username>', methods=['GET', 'POST'])
 @login_required
-def show_profile_user(user_id):
-    user_item = User.query.get_or_404(user_id)
+def show_profile_user(username):
+    user_item = User.query.filter_by(username=username).first_or_404()
     topics = user_item.topics.order_by('date_created desc').all()
     replies = user_item.replies.order_by('date_created desc').all()
     if user_item.id == g.user.id:
         return render_template('user/profile.html',
-                               title='Профиль пользователя - ',
+                               title=(gettext('Профиль пользователя - ')),
                                user=user_item,
                                topics=topics,
                                replies=replies)
 
     elif user_item.id != g.user.id:
         return render_template('user/profile.html',
-                               title='Профиль пользователя - ',
+                               title=(gettext('Профиль пользователя - ')),
                                user=user_item,
                                topics=topics,
-                               replies=replies)
+                               replies=replies
+                               )
 
 
-@user.route('members', methods=['GET'])
+@user.route('profile/edit/<string:username>', methods=['GET', 'POST'])
+@login_required
+def edit_profile(username):
+    return render_template('user/edit_profile.html',
+                           title=(gettext('Редактирование профиля'))
+                           )
+
+
+@user.route('members', methods=['GET', 'POST'])
 def members():
-    all_members = User.query.all()
-    return render_template('user/members.html', members=all_members)
+    members = User.query.order_by(User.date_joined.desc()).limit(5).all()
+    return render_template('user/members.html', members=members)
 
 
 @user.route('admin', methods=['GET', 'POST'])
 def admin():
-    if g.user.admin==False:
-        flash(gettext('Нет доступа к админ панели'),'error')
+    if current_user.admin == False:
+        flash(gettext('Нет доступа к админ панели'), 'error')
         return redirect(url_for('forum.index'))
-
-    return render_template('user/admin/index.html',
-                           title="Администрирование")
+    if request.method == 'GET':
+        Categories = Category.query.all()
+        return render_template('user/admin/index.html',
+                               title=(gettext("Администрирование")),
+                               categories=Categories)

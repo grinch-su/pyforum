@@ -41,9 +41,8 @@ def topic(category_name, topic_id, page=1):
     replies_per_page = 10
     topic_item = Topic.query.get(topic_id)
     category = Category.query.filter_by(name=category_name).first_or_404()
-    tags = Tag.query.filter_by(topic_id=topic_item.id).all()
-    replies = Reply.query.filter_by(topic_id=topic_id).order_by(Reply.date_created).paginate(page, replies_per_page,
-                                                                                             True)
+    tags = Tag.query.filter_by(topic_id=topic_id).all()
+    replies = Reply.query.filter_by(topic_id=topic_id).order_by(Reply.date_created).paginate(page, replies_per_page,True)
 
     topic_item.views += 1
     db.session.commit()
@@ -56,12 +55,12 @@ def topic(category_name, topic_id, page=1):
             reply = Reply(
                 content=form.content.data
             )
+            reply.category_id = category.id
             reply.topic_id = topic_id
             reply.user_id = g.user.id
             db.session.add(reply)
             db.session.commit()
             flash(gettext('Ответ отправлен'), 'success')
-
             return redirect(url_for('forum.topic', category_name=category_name, topic_id=topic_id, page=1))
     return render_template('forum/topic.html',
                            form=form,

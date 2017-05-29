@@ -5,7 +5,7 @@
 
 {% block content %}
     <div class="page-header">
-        <h1>{{ title | title }}<small></small></h1>
+        <h2>{{ title | title }}</h2>
         {% if g.user.is_authenticated %}
             <a class="btn btn-primary" href="{{ url_for('forum.create_topic') }}">{{ _('Создать обсуждение') }}</a>
         {% else %}
@@ -28,6 +28,10 @@
                         <a href="{{ url_for('forum.category',category_name=category.name) }}">
                             <h4 class="media-heading">{{ category.name | title }}</h4>
                         </a>
+                        <p class="text-muted">
+                            Обсуждений: {{ category.topics.count() }}
+                            Ответов: {{ category.replies.count() }}
+                        </p>
                     </div>
                 </div>
             </li>
@@ -42,8 +46,8 @@
                 <li class="list-group-item">
                     <div class="media">
                         <div class="media-left media-middle">
-                            <a href="{{ url_for('user.show_profile_user',user_id=new_topic.user_id) }}">
-                                <img class="media-object" height="27" width="27" src="{{ url_for('static', filename="img/favicon.png") }}" alt="">
+                            <a href="{{ url_for('user.show_profile_user',username=new_topic.user.username) }}">
+                                <img class="img-rounded media-object" height="60" width="60" src="{{ new_topic.user.avatar(128) }}" alt="">
                             </a>
                         </div>
                         <div class="media-body new-topics">
@@ -79,7 +83,7 @@
         {% else %}
             <li class="list-group-item">
                 {{ _('Новый участник') }}
-                <a class="badge" href="{{ url_for('user.show_profile_user',user_id = latest_member.id) }}">
+                <a class="badge" href="{{ url_for('user.show_profile_user',username = latest_member.username) }}">
                     <span class="">
                         {{ latest_member.username}}
                     </span>

@@ -1,3 +1,4 @@
+from hashlib import md5
 from datetime import datetime
 
 from flask_login import UserMixin
@@ -18,7 +19,7 @@ class User(db.Model, UserMixin):
     birth_day = db.Column(db.DateTime)
     web_site = db.Column(db.String(100))
     signature = db.Column(db.Text)
-    avatar = db.Column(db.String)
+    # avatar = db.Column(db.String)
     activated = db.Column(db.Boolean, default=False)
     status = db.Column(db.String)
     online_status = db.Column(db.Boolean, default=False)
@@ -46,6 +47,9 @@ class User(db.Model, UserMixin):
 
     def get_id(self):
         return self.id
+
+    def avatar(self, size):
+        return 'http://www.gravatar.com/avatar/%s?d=mm&s=%d' % (md5(self.email.encode('utf-8')).hexdigest(), size)
 
     def __repr__(self):
         return '<User Username - {}, email - {}, password - {}, joined - {}>'.format(

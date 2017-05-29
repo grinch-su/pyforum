@@ -7,4 +7,5 @@ from pyforum.chat import chat
 
 @chat.route('chat', methods=['GET'])
 def chats():
-    return render_template('chat/chat.html')
+    return render_template('chat/chat.html',
+                           title='Чаты')

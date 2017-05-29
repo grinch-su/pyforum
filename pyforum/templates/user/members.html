@@ -5,19 +5,20 @@
 {% endblock title%}
 
 {% block content %}
-    <h4>Участники</h4>
-
+    <div class="page-header">
+        <h2>Новые пользователи</h2>
+    </div>
     <ul class="list-group">
         {% for member in members %}
             <li class="list-group-item">
                 <div class="media">
                     <div class="media-left media-middle">
-                        <a href="{{ url_for('user.show_profile_user', user_id = member.id) }}">
-                            <img class="media-object" height="35" width="35" alt="" src="">
+                        <a href="{{ url_for('user.show_profile_user', username = member.username) }}">
+                            <img class="media-object" height="80" width="80" alt="{{ member.username }}" src="{{ member.avatar(128) }}">
                         </a>
                     </div>
                     <div class="media-body">
-                        <a href="{{ url_for('user.show_profile_user', user_id = member.id) }}">
+                        <a href="{{ url_for('user.show_profile_user', username = member.username) }}">
                             <h4 class="media-heading">{{ member.username }}</h4>
                         </a>
                         <p class="text-muted">
@@ -25,7 +26,7 @@
                             Обсуждений: {{ member.topics.count() }}
                         </p>
                         <p class="text-muted">
-                            Заходил {{ member.last_visit.strftime("%A") }}
+                            Заходил {{ member.last_visit }}
                         </p>
                     </div>
                 </div>
@@ -38,13 +39,10 @@
     <h4>Поиск участников</h4>
     <form action="" class="form-group">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Поиск...">
+            <input type="text" class="form-control" name="search" placeholder="Поиск...">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="submit">Поиск</button>
             </span>
         </div>
     </form>
-    <hr>
-    <h4>Новые участники</h4>
-
 {% endblock sidebar %}
