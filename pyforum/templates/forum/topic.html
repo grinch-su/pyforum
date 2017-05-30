@@ -65,7 +65,7 @@
             {% if replies.has_prev %}
                 <li class="previous"><a href="{{ url_for('forum.topic',category_name=category.name, topic_id=topic.id, page=replies.prev_num) }}"><span aria-hidden="true">&larr;</span> Предыдущая</a></li>
             {% else %}
-                <li class="previous disabled"><a href=""><span aria-hidden="true">&larr;</span>Предыдущая</a></li>
+                <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span>Предыдущая</a></li>
             {% endif %}
 
             {% if replies.has_next %}
@@ -73,7 +73,7 @@
                     <a href="{{ url_for('forum.topic',category_name=category.name, topic_id=topic.id,  page=replies.next_num) }}">Следующая<span aria-hidden="true">&rarr;</span></a></li>
             {% else %}
                 <li class="next disabled">
-                    <a href="">Следующая<span aria-hidden="true">&rarr;</span></a>
+                    <a href="#">Следующая<span aria-hidden="true">&rarr;</span></a>
                 </li>
             {% endif %}
         </ul>

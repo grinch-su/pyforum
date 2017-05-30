@@ -152,7 +152,7 @@ def admin():
         flash(gettext('Нет доступа к админ панели'), 'error')
         return redirect(url_for('forum.index'))
     if request.method == 'GET':
-        Categories = Category.query.all()
+        categories = Category.query.all()
         return render_template('user/admin/index.html',
                                title=(gettext("Администрирование")),
-                               categories=Categories)
+                               categories=categories)
