@@ -21,6 +21,11 @@
                         <a href="{{ url_for('user.show_profile_user', username = member.username) }}">
                             <h4 class="media-heading">{{ member.username }}</h4>
                         </a>
+                        <p>{% if member.admin %}
+                            Администратор
+                        {% else %}
+                            Пользователь
+                        {% endif %}</p>
                         <p class="text-muted">
                             Ответов: {{ member.replies.count() }}
                             Обсуждений: {{ member.topics.count() }}

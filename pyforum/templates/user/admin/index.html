@@ -56,11 +56,11 @@
                             <td>
                                 {% if not topic.locked %}
                                     <label>
-                                        <input type="checkbox">
+                                        <input value="{{ topic.locked }}" type="checkbox">
                                     </label>
                                 {% else %}
                                     <label>
-                                        <input type="checkbox" checked>
+                                        <input value="{{ topic.locked }}" type="checkbox" checked>
                                     </label>
                                 {% endif %}
                             </td>

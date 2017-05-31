@@ -24,7 +24,6 @@ class User(db.Model, UserMixin):
     status = db.Column(db.String)
     online_status = db.Column(db.Boolean, default=False)
 
-    member = db.Column(db.Boolean, default=True)
     admin = db.Column(db.Boolean, default=False)
 
     tags = db.relationship('Tag', backref='user', lazy='dynamic')
