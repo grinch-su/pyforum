@@ -5,24 +5,29 @@
 {% endblock title %}
 
 {% block content %}
-    <h4>{{ _('Имя пользоавтеля:') }}{{ user.username }}</h4>
-    <p>{{ _('Эл. адрес:') }}{{ user.email }}</p>
-    {% if user.activated %}
-        <p style="color: green;">{{ _('Аккаунт активирован') }}</p>
-    {% else %}
-        <p style="color: red;">{{ _('Аккаунт не активирован') }}</p>
-    {% endif %}
-    <img class="img-rounded" src="{{ user.avatar(128) }}" width="80" height="80" alt="">
-    <p>IP: {{ user.ip }}</p>
-    <p>Веб-сайт: <a href="{{ user.web_site }}" target="_blank">{{ user.web_site }}</a></p>
-    <p>{{ _('Кол-во ответов:') }}{{ replies | count }}</p>
-    <p>{{ _('Кол-во обсуждений:') }}{{ topics | count }}</p>
-    <p>{{ _('Дата регистрации:') }}{{ user.date_joined.strftime('%d-%m-%Y в %H:%M %p') }}</p>
-    {% if user.last_visit == None %}
-    {% else %}
-        <p>{{ _('Последняя активность:') }}{{ user.last_visit.strftime('%d-%m-%Y в %H:%M %p') }}</p>
-    {% endif %}
-    <!-- Nav tabs -->
+    <div class="row">
+        <div class="col-xs-6 col-md-4">
+            <h4>{{ _('Имя пользоавтеля:') }}{{ user.username }}</h4>
+            <p>{{ _('Эл. адрес:') }}{{ user.email }}</p>
+            {% if user.activated %}
+                <p style="color: green;">{{ _('Аккаунт активирован') }}</p>
+            {% else %}
+                <p style="color: red;">{{ _('Аккаунт не активирован') }}</p>
+            {% endif %}
+            <img class="img-rounded" src="{{ user.avatar(128) }}" width="80" height="80" alt="">
+            <p>IP: {{ user.ip }}</p>
+            <p>Веб-сайт: <a href="{{ user.web_site }}" target="_blank">{{ user.web_site }}</a></p>
+            <p>{{ _('Кол-во ответов:') }}{{ replies | count }}</p>
+            <p>{{ _('Кол-во обсуждений:') }}{{ topics | count }}</p>
+            <p>{{ _('Дата регистрации:') }}{{ user.date_joined.strftime('%d-%m-%Y в %H:%M %p') }}</p>
+            {% if user.last_visit == None %}
+            {% else %}
+                <p>{{ _('Последняя активность:') }}{{ user.last_visit.strftime('%d-%m-%Y в %H:%M %p') }}</p>
+            {% endif %}
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-8">
+            <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#topics" aria-controls="topics" role="tab" data-toggle="tab">{{ _('Обсжудения') }}</a></li>
         <li role="presentation"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">{{ _('Ответы') }}</a></li>
@@ -90,6 +95,27 @@
             {% endif %}
         </div>
   </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock  content %}
 
 {% block sidebar %}

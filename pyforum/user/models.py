@@ -1,9 +1,21 @@
 from hashlib import md5
 from datetime import datetime
 
-from flask_login import UserMixin
+from flask_login import UserMixin, AnonymousUserMixin
 
 from pyforum import db
+
+
+class Role(db.Model):
+    __tablename__ = 'role'
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    name = db.Column(db.String(60), unique=True, nullable=False)
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return '<Role {}>'.format(self.name)
 
 
 class User(db.Model, UserMixin):
@@ -19,7 +31,6 @@ class User(db.Model, UserMixin):
     birth_day = db.Column(db.DateTime)
     web_site = db.Column(db.String(100))
     signature = db.Column(db.Text)
-    # avatar = db.Column(db.String)
     activated = db.Column(db.Boolean, default=False)
     status = db.Column(db.String)
     online_status = db.Column(db.Boolean, default=False)
@@ -57,3 +68,9 @@ class User(db.Model, UserMixin):
             self.password,
             self.date_joined
         )
+
+class Anonymous(AnonymousUserMixin):
+    def __init__(self):
+        self.id = 0
+        self.username = 'Guest'
+        self.admin = False

@@ -30,12 +30,16 @@
                         <tr>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-default">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
-                                    <button class="btn btn-default">
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                    </button>
+                                    <form action="">
+                                        <button class="btn btn-default">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </button>
+                                    </form>
+                                    <form action="{{ url_for('forum.delete_topic',id=topic.id) }}" method="POST">
+                                        <button class="btn btn-default" type="submit">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                             <th scope="row">

@@ -16,6 +16,15 @@ class Config(object):
     SQLALCHEMY_ECHO = False
 
     # Flask-Mail
+    MAIL_SERVER = 'smtp.googlemail.com'
+    MAIL_PORT = 465
+    MAIL_USE_TLS = False
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = 'grinchfedorov@gmail.com'
+    MAIL_PASSWORD = '1997grincstal'
+    # MAIL_USERNAME = os.environ['APP_MAIL_USERNAME']
+    # MAIL_PASSWORD = os.environ['APP_MAIL_PASSWORD']
+    MAIL_DEFAULT_SENDER = 'grinchfedorov@gmail.com'
 
     # Flask-Login for auth
     DEBUG_TB_INTERCEPT_REDIRECTS = False

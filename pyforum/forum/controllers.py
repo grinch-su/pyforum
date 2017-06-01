@@ -1,6 +1,6 @@
 from flask import render_template, abort, redirect, url_for, request, flash, g
 from flask_login import login_required, current_user
-from flask_babel import gettext
+from flask_babel import gettext, _
 
 from pyforum import db
 from pyforum.forum import forum
@@ -42,7 +42,8 @@ def topic(category_name, topic_id, page=1):
     topic_item = Topic.query.get(topic_id)
     category = Category.query.filter_by(name=category_name).first_or_404()
     tags = Tag.query.filter_by(topic_id=topic_id).all()
-    replies = Reply.query.filter_by(topic_id=topic_id).order_by(Reply.date_created).paginate(page, replies_per_page,True)
+    replies = Reply.query.filter_by(topic_id=topic_id).order_by(Reply.date_created).paginate(page, replies_per_page,
+                                                                                             True)
 
     topic_item.views += 1
     db.session.commit()
@@ -61,7 +62,10 @@ def topic(category_name, topic_id, page=1):
             db.session.add(reply)
             db.session.commit()
             flash(gettext('Ответ отправлен'), 'success')
-            return redirect(url_for('forum.topic', category_name=category_name, topic_id=topic_id, page=1))
+            return redirect(url_for(endpoint='forum.topic',
+                                    category_name=category_name,
+                                    topic_id=topic_id, page=1))
+
     return render_template('forum/topic.html',
                            form=form,
                            topic=topic_item,
@@ -71,6 +75,7 @@ def topic(category_name, topic_id, page=1):
 
 
 @forum.route('topic/new', methods=['GET', 'POST'])
+@login_required
 def create_topic():
     if not current_user.is_authenticated:
         flash(gettext('Войдите в систему что-бы создать обсуждение!'), 'error')
@@ -85,12 +90,11 @@ def create_topic():
             flash(gettext('Необходимо указать содержание'), 'error')
             return redirect(url_for('forum.create_topic'))
         else:
-            topic = Topic(title=form.title.data,
-                          content=form.content.data,
-                          category_id=request.form.get('category_select')
-                          )
-            topic.user_id = g.user.id
-            db.session.add(topic)
+            topic_item = Topic(title=form.title.data,
+                               content=form.content.data,
+                               category_id=request.form.get('category_select'))
+            topic_item.user_id = g.user.id
+            db.session.add(topic_item)
             db.session.commit()
             flash(gettext('Обсуждение было создано успешно'), 'success')
             return redirect(url_for('forum.index'))
@@ -100,6 +104,7 @@ def create_topic():
 
 
 @forum.route('category/new', methods=['GET', 'POST'])
+@login_required
 def new_category():
     if g.user.admin == False:
         flash(gettext('Нет доступа к созданию категорий.'), 'error')
@@ -110,13 +115,26 @@ def new_category():
         if not request.form.get('description'):
             flash(gettext('Введите опписание категории'), 'error')
         else:
-            category = Category(
+            new_category = Category(
                 name=request.form.get('name'),
                 description=request.form.get('description')
             )
-            db.session.add(category)
+            db.session.add(new_category)
             db.session.commit()
             flash(gettext('Категория была успешно создана'), 'success')
             return redirect(url_for('forum.index'))
     return render_template('forum/create_category.html',
-                           title=gettext('Создание новой категрии'))
+                           title=(_('Создание новой категрии')))
+
+
+@forum.route('topic/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def delete_topic(id):
+    del_topic = Topic.query.filter_by(id=id).first_or_404()
+    if current_user.admin == True or del_topic.user_id == current_user.id:
+        db.session.delete(del_topic)
+        db.session.commit()
+        return redirect(request.referrer)
+    elif del_topic.user_id != current_user.id:
+        flash(_("Нет доступа к удалению даунного обсуждения"), 'error')
+        return redirect(url_for('forum.index'))
