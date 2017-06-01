@@ -7,15 +7,14 @@
 {% block content %}
     <div class="row">
         <div class="col-xs-6 col-md-4">
-            <h4>{{ _('Имя пользоавтеля:') }}{{ user.username }}</h4>
-            <p>{{ _('Эл. адрес:') }}{{ user.email }}</p>
+            <img class="img-rounded" src="{{ user.avatar(128) }}" width="100" height="100" alt="">
+            <p>{{ _('Имя пользоавтеля: ')}}{{ user.username }}</p>
+            <p>{{ _('Эл. адрес: ') }}{{ user.email }}</p>
             {% if user.activated %}
                 <p style="color: green;">{{ _('Аккаунт активирован') }}</p>
             {% else %}
                 <p style="color: red;">{{ _('Аккаунт не активирован') }}</p>
             {% endif %}
-            <img class="img-rounded" src="{{ user.avatar(128) }}" width="80" height="80" alt="">
-            <p>IP: {{ user.ip }}</p>
             <p>Веб-сайт: <a href="{{ user.web_site }}" target="_blank">{{ user.web_site }}</a></p>
             <p>{{ _('Кол-во ответов:') }}{{ replies | count }}</p>
             <p>{{ _('Кол-во обсуждений:') }}{{ topics | count }}</p>
@@ -26,7 +25,7 @@
             {% endif %}
         </div>
 
-        <div class="col-xs-12 col-sm-6 col-md-8">
+         <div class="col-xs-12 col-sm-6 col-md-8">
             <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#topics" aria-controls="topics" role="tab" data-toggle="tab">{{ _('Обсжудения') }}</a></li>

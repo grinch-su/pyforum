@@ -79,3 +79,15 @@ class Tag(db.Model):
 
     def __repr__(self):
         return '<Tag {}>'.format(self.name)
+
+
+class Like(db.Model):
+    __tablename_='like'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    topic_id = db.Column(db.Integer, db.ForeignKey('topic.id'))
+
+    def __init__(self):
+        pass

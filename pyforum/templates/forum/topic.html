@@ -28,12 +28,22 @@
                 <div class="media">
                     <div class="media-left media-middle">
                         <a href="{{ url_for('user.show_profile_user',username=topic.user.username) }}">
-                            <img class="img-rounded media-object" height="80" width="80" alt="" src="{{ topic.user.avatar(128) }}">
+                            <img class="img-rounded media-object" height="100" width="100" alt="" src="{{ topic.user.avatar(128) }}">
                         </a>
                     </div>
                     <div class="media-body">
                         <p>{{ topic.content | safe }}</p>
                         <p class="text-muted">{{ topic.date_created }}</p>
+                        {% if g.user.username == topic.user.username %}
+                                <a class="btn btn-default" href="{{ url_for('forum.edit_topic', id=topic.id) }}">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            <form action="{{ url_for('forum.delete_topic',id=topic.id) }}" method="POST">
+                                <button class="btn btn-default" type="submit">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
             </li>
@@ -49,12 +59,20 @@
                             </span>
                         </a>
                         <a href="{{ url_for('user.show_profile_user',username=reply.user.username) }}">
-                            <img class="img-rounded media-object" height="80" width="80" alt="" src="{{ reply.user.avatar(128) }}">
+                            <img class="img-rounded media-object" height="100" width="100" alt="" src="{{ reply.user.avatar(128) }}">
                         </a>
                     </div>
                     <div class="media-body">
                         <p>{{ reply.content | safe }}</p>
-                        <p class="text-muted">{{ reply.date_created }}</p>
+                        <p>
+                            {{ reply.user.signature | safe }}
+                        </p>
+                        <p class="text-muted">
+                            <a href="{{ url_for('user.show_profile_user', username=reply.user.username) }}">
+                                {{ reply.user.username }},
+                            </a>
+                            {{ reply.date_created }}
+                        </p>
                     </div>
                 </div>
             </li>

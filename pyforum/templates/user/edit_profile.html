@@ -5,6 +5,31 @@
 {% endblock %}
 
 {% block content %}
+    <div class="row">
+        <form action="{{ url_for('user.edit_profile',username=user.username) }}" method="POST" >
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input  class="form-control" name="username" type="text" value="{{ user.username }}">
+                </div>
+                <div class="input-group">
+                    <input  class="form-control" name="password" type="password" value="{{ user.password }}">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input  class="form-control" name="birth-day" type="date" value="{{ user.birth_day }}">
+                </div>
+                <div class="input-group">
+                    <input  class="form-control" name="web-site" type="url" value="{{ user.web_site }}">
+                </div>
+            </div>
+            <textarea name="signature" class="ckeditor">{{ user.signature | safe}}</textarea>
+            <br>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </div>
+        </form>
+    </div>
 
 {% endblock %}
 

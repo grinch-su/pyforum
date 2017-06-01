@@ -7,6 +7,7 @@ from flask_mail import Mail
 from flask_babel import Babel
 from flask_debugtoolbar import DebugToolbarExtension
 
+
 toolbar = DebugToolbarExtension()
 babel = Babel()
 db = SQLAlchemy()
@@ -20,9 +21,15 @@ app = Flask(__name__)
 app.config.from_object(environ['APP_SETTINGS'])
 
 db.init_app(app)
+
 login_manager.init_app(app)
+login_manager.login_view = 'user.log_in'
+
+
 mail.init_app(app)
+
 babel.init_app(app)
+
 if app.debug:
     try:
         toolbar.init_app(app)

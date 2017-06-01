@@ -134,7 +134,36 @@ def delete_topic(id):
     if current_user.admin == True or del_topic.user_id == current_user.id:
         db.session.delete(del_topic)
         db.session.commit()
-        return redirect(request.referrer)
+        if current_user.admin:
+            return redirect(url_for('user.admin'))
+        elif del_topic.user_id == current_user.id:
+            return redirect(url_for('forum.index'))
     elif del_topic.user_id != current_user.id:
+        flash(_("Нет доступа к удалению даунного обсуждения"), 'error')
+        return redirect(url_for('forum.index'))
+
+
+@forum.route('topic/edit-topic/<int:id>', methods=['GET', 'POST'])
+@login_required
+def edit_topic(id):
+    topic_item = Topic.query.filter_by(id=id).first_or_404()
+    categories = Category.query.order_by(Category.name.desc()).all()
+    category_item = Category.query.filter_by(id=topic_item.category_id).first_or_404()
+    if current_user.admin == True or topic_item.user_id == current_user.id:
+        if request.method == 'POST':
+            title = request.form.get('title')
+            content = request.form.get('content')
+            category_id = request.form.get('category_select')
+
+            topic_item.title = title
+            topic_item.content = content
+            topic_item.category_id = category_id
+            db.session.commit()
+            flash(_('Обсуждения отредактировано успешно'))
+            return redirect(url_for('forum.topic',category_name = category_item.name, topic_id = id, page=1))
+        else:
+            return render_template('forum/edit_topic.html', topic=topic_item, categories = categories)
+
+    elif topic_item.user_id != current_user.id:
         flash(_("Нет доступа к удалению даунного обсуждения"), 'error')
         return redirect(url_for('forum.index'))

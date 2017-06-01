@@ -28,7 +28,7 @@ class User(db.Model, UserMixin):
     ip = db.Column(db.String)
     date_joined = db.Column(db.DateTime, default=datetime.utcnow)
     last_visit = db.Column(db.DateTime)
-    birth_day = db.Column(db.DateTime)
+    birth_day = db.Column(db.Date)
     web_site = db.Column(db.String(100))
     signature = db.Column(db.Text)
     activated = db.Column(db.Boolean, default=False)
