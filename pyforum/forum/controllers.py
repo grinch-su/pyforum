@@ -32,7 +32,7 @@ def category(category_name, page=1):
     topics = Topic.query.filter_by(category_id=category.id).paginate(page, topics_per_page, True)
     return render_template('forum/category_topics.html', title=category_name, topics=topics, category=category)
 
-
+@forum.route('<category_name>/topic-<int:topic_id>', methods=['GET','POST'])
 @forum.route('<category_name>/topic-<int:topic_id>/page-<int:page>', methods=['GET', 'POST'])
 def topic(category_name, topic_id, page=1):
     replies_per_page = 5
