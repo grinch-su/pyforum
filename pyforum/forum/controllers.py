@@ -14,17 +14,14 @@ def index():
     categories = Category.query.order_by(Category.name.desc()).all()
     new_topics = Topic.query.order_by(Topic.date_created.desc()).limit(4).all()
     latest_member = User.query.order_by(User.date_joined.desc()).limit(1).first()
-    count_topics = Topic.query.count()
-    count_members = User.query.count()
-    count_replies = Reply.query.count()
     return render_template('forum/home.html',
                            title='PyForum',
                            categories=categories,
                            new_topics=new_topics,
                            latest_member=latest_member,
-                           count_members=count_members,
-                           count_replies=count_replies,
-                           count_topics=count_topics)
+                           count_members=User.query.count(),
+                           count_replies=Reply.query.count(),
+                           count_topics=Topic.query.count())
 
 
 @forum.route('<category_name>', methods=['GET', 'POST'])
@@ -38,7 +35,7 @@ def category(category_name, page=1):
 
 @forum.route('<category_name>/topic-<int:topic_id>/page-<int:page>', methods=['GET', 'POST'])
 def topic(category_name, topic_id, page=1):
-    replies_per_page = 10
+    replies_per_page = 5
     topic_item = Topic.query.get(topic_id)
     category = Category.query.filter_by(name=category_name).first_or_404()
     tags = Tag.query.filter_by(topic_id=topic_id).all()
@@ -132,6 +129,7 @@ def new_category():
 def delete_topic(id):
     del_topic = Topic.query.filter_by(id=id).first_or_404()
     if current_user.admin == True or del_topic.user_id == current_user.id:
+        Reply.query.filter_by(topic_id=id).delete()
         db.session.delete(del_topic)
         db.session.commit()
         if current_user.admin:

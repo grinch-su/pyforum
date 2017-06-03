@@ -1,23 +1,26 @@
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms.fields.html5 import EmailField
 from wtforms import SubmitField, StringField, PasswordField
-
+from wtforms.validators import InputRequired, Length, EqualTo
+from flask_babel import _
 
 class SignUpForm(FlaskForm):
-    username = StringField(label='Имя пользователя:')
-    email = EmailField(label='Эл. адрес:')
-    password = PasswordField(label='Пароль:')
-    confirm = PasswordField(label='Повторите пароль:')
-    recaptcha = RecaptchaField()
-    submit = SubmitField('Зарегистрироваться')
+    username = StringField(_('Имя пользователя:'), validators=[InputRequired(_('Введите имя пользоватля!'))])
+    email = EmailField(_('Эл. адрес:'), validators=[InputRequired(_('Введите эл. адрес!'))])
+    password = PasswordField(_('Пароль:'),  validators=[InputRequired(_('Введите пароль!')),
+                                                           EqualTo('confirm', message=_('Пароли должны совпадать!'))])
+    confirm = PasswordField(_('Повторите пароль:'))
+    re_captcha = RecaptchaField()
+    submit = SubmitField(_('Зарегистрироваться'))
 
 
 class SignInForm(FlaskForm):
-    email = EmailField(label='Ващ эл. адрес:')
-    password = PasswordField(label='Пароль:')
-    submit = SubmitField('Авторизоваться')
+    email = EmailField(_('Ващ эл. адрес:'), validators=[InputRequired(_('Введите эл. адрес!'))])
+    password = PasswordField(_('Пароль:'), validators=[InputRequired(_('Введите пароль!'))])
+    re_captcha = RecaptchaField()
+    submit = SubmitField(_('Авторизоваться'))
 
 
 class ForgotPasswordForm(FlaskForm):
-    email = EmailField(label='Эл. адрес')
-    submit = SubmitField('Сбросить пароль')
+    email = EmailField(_('Эл. адрес'))
+    submit = SubmitField(_('Сбросить пароль'))

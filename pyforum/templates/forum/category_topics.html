@@ -10,6 +10,9 @@
     <div class="page-header">
         <h2>{{ title | title }}<small></small></h2>
     </div>
+    {% if not topics.items %}
+        <h3 class="text-muted">Обсуждений нет</h3>
+    {% else %}
     <ul class="list-group">
         {% for topic in topics.items %}
             <li class="list-group-item">
@@ -48,7 +51,9 @@
             {% else %}
                 <li class="previous disabled"><a href=""><span aria-hidden="true">&larr;</span> Предыдщуая</a></li>
             {% endif %}
-
+            {% for page in topics.iter_pages() %}
+                <li><a href="{{ url_for('forum.category',category_name=category.name, page=page) }}">{{ page }}</a></li>
+            {% endfor %}
             {% if topics.has_next %}
                 <li class="next"><a href="{{ url_for('forum.category',category_name=category.name, page=topics.next_num) }}">Слудющая<span aria-hidden="true">&rarr;</span></a></li>
             {% else %}
@@ -56,6 +61,7 @@
             {% endif %}
         </ul>
     </nav>
+    {% endif %}
 {% endblock content %}
 
 <!-- Block sidebar -->

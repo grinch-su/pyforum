@@ -24,8 +24,7 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-left">
-                            <li><a href="{{ url_for('user.admin') }}">Обсуждения</a></li>
-                            <li><a href="{{ url_for('user.admin') }}">Пользователи</a></li>
+                            <li><a href="{{ url_for('forum.index') }}">{{ _('Форум') }}</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             {% if g.user.is_authenticated %}
@@ -35,9 +34,6 @@
                                         <li><a href="{{ url_for('user.show_profile_user', username = g.user.username) }}">Профиль</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="{{ url_for('user.edit_profile',username=g.user.username) }}">Редактировать</a></li>
-                                         {% if g.user.admin %}
-                                             <li><a href="{{ url_for('user.admin')}}">Админ панель</a></li>
-                                         {% endif %}
                                         <li role="separator" class="divider"></li>
                                         <li><a href="{{ url_for('user.log_out') }}">{{ _('Выход') }}</a></li>
                                     </ul>

@@ -9,13 +9,15 @@
         <div class="col-xs-6 col-md-4">
             <img class="img-rounded" src="{{ user.avatar(128) }}" width="100" height="100" alt="">
             <p>{{ _('Имя пользоавтеля: ')}}{{ user.username }}</p>
-            <p>{{ _('Эл. адрес: ') }}{{ user.email }}</p>
+            <p>{{ _('Эл. адрес: ') }}<a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
             {% if user.activated %}
-                <p style="color: green;">{{ _('Аккаунт активирован') }}</p>
+                <p class="text-success">{{ _('Аккаунт активирован') }}</p>
             {% else %}
-                <p style="color: red;">{{ _('Аккаунт не активирован') }}</p>
+                <p class="text-danger">{{ _('Аккаунт не активирован') }}</p>
             {% endif %}
-            <p>Веб-сайт: <a href="{{ user.web_site }}" target="_blank">{{ user.web_site }}</a></p>
+            {% if user.web_site %}
+                <p>Веб-сайт: <a href="{{ user.web_site }}" target="_blank">{{ user.web_site }}</a></p>
+            {% endif %}
             <p>{{ _('Кол-во ответов:') }}{{ replies | count }}</p>
             <p>{{ _('Кол-во обсуждений:') }}{{ topics | count }}</p>
             <p>{{ _('Дата регистрации:') }}{{ user.date_joined.strftime('%d-%m-%Y в %H:%M %p') }}</p>
@@ -73,7 +75,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">{{ _('В обсуждении ') }}
-                                        <a href="{{ url_for('forum.topic', category_name=reply.topic.category.name, topic_id = reply.topic.id,page=1) }}">
+                                        <a href="{{ url_for('forum.topic', category_name=reply.category.name, topic_id = reply.topic.id,page=1) }}">
                                             {{ reply.topic.title }}
                                         </a>
                                     </h4>

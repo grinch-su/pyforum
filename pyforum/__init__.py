@@ -6,13 +6,14 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from flask_babel import Babel
 from flask_debugtoolbar import DebugToolbarExtension
-
+from flask_socketio import SocketIO
 
 toolbar = DebugToolbarExtension()
 babel = Babel()
 db = SQLAlchemy()
 mail = Mail()
 login_manager = LoginManager()
+io = SocketIO()
 
 app = Flask(__name__)
 
@@ -29,6 +30,8 @@ login_manager.login_view = 'user.log_in'
 mail.init_app(app)
 
 babel.init_app(app)
+
+io.init_app(app)
 
 if app.debug:
     try:

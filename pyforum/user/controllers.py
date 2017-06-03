@@ -70,10 +70,13 @@ def sign_up():
         flash(_('Вы уже вошли в систему под ником {username}').format(username=g.user.username), 'error')
         return redirect(url_for('forum.index'))
     form = SignUpForm()
-    if request.method == 'POST':
+    if request.method == 'POST' and form.validate_on_submit():
         new_user = User(username=form.username.data,
                         email=form.email.data,
                         password=form.password.data)
+
+        new_user.ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+
         db.session.add(new_user)
         db.session.commit()
         send_confirmation_email(new_user.email)
@@ -111,15 +114,13 @@ def confirm_email(token):
 @user.route('login', methods=['GET', 'POST'])
 def log_in():
     if current_user.is_authenticated:
-        flash(_('Вы уже вошли в систему под ником ') + current_user + '', 'error')
-        return redirect(url_for('forum.topics'))
+        flash(_('Вы уже вошли в систему под ником {user}'.format(user=current_user.username)), 'error')
+        return redirect(url_for('forum.index'))
     form = SignInForm()
-    forgot_form = ForgotPasswordForm()
-    if request.method == 'POST':
-        email = form.email.data,
-        password = form.password.data
-        registered_user = User.query.filter_by(email=email,
-                                               password=password).first()
+    # forgot_form = ForgotPasswordForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        registered_user = User.query.filter_by(email=form.email.data,
+                                               password=form.password.data).first()
         if registered_user is None:
             flash(_('Неверный эл. адрес или пароль'), 'error')
             return redirect(url_for('user.log_in'))
@@ -130,7 +131,7 @@ def log_in():
 
     return render_template('user/auth/log_in.html',
                            form=form,
-                           forgot_form=forgot_form,
+                           # forgot_form=forgot_form,
                            title=(_('Авторизация')))
 
 
@@ -199,6 +200,8 @@ def admin():
         return redirect(url_for('forum.index'))
     if request.method == 'GET':
         categories = Category.query.all()
+        users = User.query.all()
         return render_template('user/admin/index.html',
                                title=(_("Администрирование")),
-                               categories=categories)
+                               categories=categories,
+                               users = users)

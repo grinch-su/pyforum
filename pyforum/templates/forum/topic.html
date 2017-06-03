@@ -78,6 +78,10 @@
             </li>
         {% endfor %}
     </ul>
+    {% if not replies.items %}
+        <h2 class="text-muted">Ответов нет</h2>
+        <br>
+    {% else %}
     <nav aria-label="...">
         <ul class="pager">
             {% if replies.has_prev %}
@@ -85,7 +89,9 @@
             {% else %}
                 <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span>Предыдущая</a></li>
             {% endif %}
-
+            {% for page in replies.iter_pages() %}
+                <li><a href="{{ url_for('forum.topic', category_name=category.name, topic_id=topic.id, page=page) }}">{{ page }}</a></li>
+            {% endfor %}
             {% if replies.has_next %}
                 <li class="next">
                     <a href="{{ url_for('forum.topic',category_name=category.name, topic_id=topic.id,  page=replies.next_num) }}">Следующая<span aria-hidden="true">&rarr;</span></a></li>
@@ -96,6 +102,7 @@
             {% endif %}
         </ul>
     </nav>
+    {% endif %}
 
     {% if g.user.is_authenticated %}
         <form action="" role="form" method="POST">
