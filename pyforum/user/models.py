@@ -5,7 +5,6 @@ from flask_login import UserMixin, AnonymousUserMixin
 
 from pyforum import db
 
-
 class Role(db.Model):
     __tablename__ = 'role'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -24,7 +23,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
-    password = db.Column(db.String(100), nullable=False)
+    password = db.Column(db.String(128), nullable=False)
     ip = db.Column(db.String)
     date_joined = db.Column(db.DateTime, default=datetime.utcnow)
     last_visit = db.Column(db.DateTime)
@@ -36,7 +35,7 @@ class User(db.Model, UserMixin):
     online_status = db.Column(db.Boolean, default=False)
 
     admin = db.Column(db.Boolean, default=False)
-
+    banned = db.Column(db.Boolean, default=False)
     tags = db.relationship('Tag', backref='user', lazy='dynamic')
     replies = db.relationship('Reply', backref='user', lazy='dynamic')
     topics = db.relationship('Topic', backref='user', lazy='dynamic')
@@ -46,26 +45,13 @@ class User(db.Model, UserMixin):
         self.email = email
         self.password = password
 
-    def is_authenticated(self):
-        return True
-
-    def is_active(self):
-        return True
-
-    def is_anonymous(self):
-        return False
-
-    def get_id(self):
-        return self.id
-
     def avatar(self, size):
         return 'http://www.gravatar.com/avatar/%s?d=mm&s=%d' % (md5(self.email.encode('utf-8')).hexdigest(), size)
 
     def __repr__(self):
-        return '<User Username - {}, email - {}, password - {}, joined - {}>'.format(
+        return '<User Username - {}, email - {}, joined - {}>'.format(
             self.username,
             self.email,
-            self.password,
             self.date_joined
         )
 
@@ -74,3 +60,4 @@ class Anonymous(AnonymousUserMixin):
         self.id = 0
         self.username = 'Guest'
         self.admin = False
+        self.banned = False

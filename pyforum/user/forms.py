@@ -21,6 +21,13 @@ class SignInForm(FlaskForm):
     submit = SubmitField(_('Авторизоваться'))
 
 
-class ForgotPasswordForm(FlaskForm):
-    email = EmailField(_('Эл. адрес'))
+class ResetEmailForm(FlaskForm):
+    email = EmailField(_('Эл. адрес'), validators=[InputRequired(_('Введите эл. адрес!'))])
     submit = SubmitField(_('Сбросить пароль'))
+
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField(_('Пароль:'),  validators=[InputRequired(_('Введите пароль!')),
+                                                           EqualTo('confirm', message=_('Пароли должны совпадать!'))])
+    confirm = PasswordField(_('Повторите пароль:'))
+    submit = SubmitField(_('Изменить пароль'))

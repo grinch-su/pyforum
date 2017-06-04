@@ -5,10 +5,8 @@ from flask import Flask, g, flash, url_for, redirect
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_babel import Babel
-from flask_debugtoolbar import DebugToolbarExtension
 from flask_socketio import SocketIO
 
-toolbar = DebugToolbarExtension()
 babel = Babel()
 db = SQLAlchemy()
 mail = Mail()
@@ -35,7 +33,8 @@ io.init_app(app)
 
 if app.debug:
     try:
-        toolbar.init_app(app)
+        from flask_debugtoolbar import DebugToolbarExtension
+        toolbar = DebugToolbarExtension(app)
     except:
         pass
 

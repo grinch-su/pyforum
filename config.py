@@ -15,6 +15,9 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
 
+    #Flask-Bcrypt
+    BCRYPT_LOG_ROUNDS = 12
+
     # Flask-Mail
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 465

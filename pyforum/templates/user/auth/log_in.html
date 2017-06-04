@@ -21,11 +21,11 @@
             {{ form.password.label(class="col-sm-2 control-label") }}
             <div class="col-sm-10">
                 {{ form.password(class="form-control", placeholder="Пароль") }}
-{#                <small>#}
-{#                    <label id="forgotPassword" for="inputPassword">#}
-{#                        <a href="#" data-toggle="modal" data-target=".forgotModal">{{ _('Забыли пароль?') }}</a>#}
-{#                    </label>#}
-{#                </small>#}
+                <small>
+                    <label id="forgotPassword" for="inputPassword">
+                        <a href="#" data-toggle="modal" data-target=".forgotModal">{{ _('Забыли пароль?') }}</a>
+                    </label>
+                </small>
             </div>
             <ul>
                 {% for error in form.password.errors %}
@@ -50,20 +50,31 @@
         </div>
     </form>
 
-{#    <div class="modal fade forgotModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">#}
-{#        <div class="modal-dialog modal-lg" role="document">#}
-{#            <div class="modal-content">#}
-{#                <form class="form-horizontal" method="post">#}
-{#                    <div class="form-group">#}
-{#                        {{ forgot_form.email.label(class="col-sm-2 control-label") }}#}
-{#                        <div class="col-sm-10">#}
-{#                            {{ forgot_form.email(class="form-control", placeholder="Эл. адрес") }}#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    {{ forgot_form.submit(class="btn btn-primary") }}#}
-{#                </form>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
+    <div class="modal fade forgotModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form class="form-horizontal" action="" method="POST">
+                    {{ form_reset.csrf_token }}
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4>Восстановление пароля</h4>
+                    </div>
+                    <div class="modal-body">
+                            <div class="form-group">
+                                {{ form_reset.email.label(class="col-sm-2 control-label") }}
+                                <div class="col-sm-10">
+                                    {{ form_reset.email(class="form-control", placeholder="example@domain.ru") }}
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        {{ form_reset.submit(class="btn btn-primary") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 {% endblock content %}
