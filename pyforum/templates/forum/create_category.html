@@ -5,13 +5,14 @@
 
 {% block content %}
     <form method="POST" role="form" action="{{ url_for('forum.new_category') }}">
+        {{ form.csrf_token }}
         <div class="form-group form-group-lg">
-            <input name="name" type="text" class="form-control" placeholder="Название категории...">
+            {{ form.name(class="form-control", placeholder="Название категории...")}}
         </div>
         <div class="form-group">
-            <textarea name="description" class="form-control ckeditor" rows="3"></textarea>
+            {{ form.description(class="form-control ckeditor") }}
         </div>
-        <button type="submit" class="btn btn-primary">Создать</button>
+        {{ form.submit(class="btn btn-primary") }}
     </form>
 {% endblock %}
 

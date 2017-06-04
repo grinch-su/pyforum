@@ -106,6 +106,10 @@
 
     {% if g.user.is_authenticated %}
         <form action="" role="form" method="POST">
+            {{ form.csrf_token }}
+            {% for error in form.content.errors %}
+                <label for="">{{ error }}</label>
+                {% endfor %}
             <div class="form-group">
                 {{ form.content(class = 'ckeditor') }}
             </div>
