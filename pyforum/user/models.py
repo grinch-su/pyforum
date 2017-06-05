@@ -1,6 +1,7 @@
 from hashlib import md5
 from datetime import datetime
 
+from flask import url_for
 from flask_login import UserMixin, AnonymousUserMixin
 
 from pyforum import db
@@ -47,6 +48,21 @@ class User(db.Model, UserMixin):
 
     def avatar(self, size):
         return 'http://www.gravatar.com/avatar/%s?d=mm&s=%d' % (md5(self.email.encode('utf-8')).hexdigest(), size)
+
+    def role(self):
+        if self.admin:
+            return 'Администратор'
+        else:
+            return 'Пользователь'
+
+    def to_json(self):
+        json_user = {
+            'id': self.id,
+            'username': self.username,
+            'avatar': self.avatar(50),
+            '_link' : url_for('user.show_profile_user', username=self.username)
+        }
+        return json_user
 
     def __repr__(self):
         return '<User Username - {}, email - {}, joined - {}>'.format(

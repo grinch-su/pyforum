@@ -6,7 +6,7 @@
 
 {% block content %}
     <div class="page-header">
-        <h2>Новые пользователи</h2>
+        <h2>Пользователи</h2>
     </div>
     <ul class="list-group">
         {% for member in members %}
@@ -21,17 +21,13 @@
                         <a href="{{ url_for('user.show_profile_user', username = member.username) }}">
                             <h4 class="media-heading">{{ member.username }}</h4>
                         </a>
-                        <p>{% if member.admin %}
-                            Администратор
-                        {% else %}
-                            Пользователь
-                        {% endif %}</p>
+                        <p>{{ member.role() }}</p>
                         <p class="text-muted">
                             Ответов: {{ member.replies.count() }}
-                            Обсуждений: {{ member.topics.count() }}
+                            Обсуждений: {{ member.topics.count()  }}
                         </p>
                         <p class="text-muted">
-                            Заходил {{ member.last_visit }}
+                            Заходил {{ member.last_visit}}
                         </p>
                     </div>
                 </div>
@@ -42,12 +38,17 @@
 
 {% block sidebar %}
     <h4>Поиск участников</h4>
-    <form action="" class="form-group">
-        <div class="input-group">
-            <input type="text" class="form-control" name="search" placeholder="Поиск...">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="submit">Поиск</button>
-            </span>
-        </div>
-    </form>
+    <input type="text" class="form-control" id="search_user" name="search_user" value="" placeholder="Поиск...">
+    <ul id="result" class="list-group">
+    </ul>
+    <h4>Новые пользователи</h4>
+      <div class="row">
+        {% for member in members  %}
+            <div class="col-xs-4 col-md-4">
+                <a href="{{ url_for('user.show_profile_user', username = member.username) }}" class="thumbnail">
+                    <img src="{{ member.avatar(128) }}" alt="...">
+                </a>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock sidebar %}

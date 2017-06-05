@@ -5,6 +5,8 @@
 
 {% block content %}
     <div class="page-header">
+        <p id="datetimeNow">
+        </p>
         <h2>{{ title | title }}</h2>
         {% if g.user.is_authenticated %}
             <a class="btn btn-primary" href="{{ url_for('forum.create_topic') }}">{{ _('Создать обсуждение') }}</a>
@@ -30,7 +32,7 @@
                         </a>
                         <p>{{ category.description | safe }}</p>
                         <p class="text-muted">
-                            Обсуждений: {{ category.topics.count() }}
+                            Обсуждений: {{ category.topics.count()}}
                         </p>
                     </div>
                 </div>

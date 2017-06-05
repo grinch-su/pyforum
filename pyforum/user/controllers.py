@@ -2,7 +2,8 @@ import json
 from datetime import datetime
 
 from itsdangerous import URLSafeTimedSerializer
-from flask import render_template, redirect, url_for, Response, jsonify, flash, request, g, current_app, abort, make_response
+from flask import render_template, redirect, url_for, Response, jsonify, flash, request, g, current_app, abort, \
+    make_response
 from flask_login import logout_user, login_required, login_user, current_user, AnonymousUserMixin
 from flask_babel import _
 
@@ -15,6 +16,7 @@ from pyforum.forum.models import Topic, Reply, Category
 from pyforum.user.forms import SignUpForm, SignInForm, ResetEmailForm, ResetPasswordForm
 
 login_manager.anonymous_user = Anonymous
+
 
 # babel
 @babel.localeselector
@@ -138,7 +140,9 @@ def reset_with_token(token):
                                          salt='email-confirmation-salt',
                                          max_age=3600)
     except:
-        flash(_('Ссылка восстановления более не действительна: время её действия истекло или она уже была использована ранее.'), 'error')
+        flash(_(
+            'Ссылка восстановления более не действительна: время её действия истекло или она уже была использована ранее.'),
+              'error')
         return redirect(url_for('user.login'))
 
     form = ResetPasswordForm()
@@ -191,29 +195,30 @@ def show_profile_user(username):
 @user.route('profile/edit/<string:username>', methods=['GET', 'POST'])
 @login_required
 def edit_profile(username):
-    if username != current_user.username:
+    if current_user.username == username or current_user.admin == True:
+        edit_user = User.query.filter_by(username=username).first_or_404()
+        if request.method == 'POST':
+            edit_user.username = request.form.get('username')
+            edit_user.password = request.form.get('password')
+            edit_user.web_site = request.form.get('web-site')
+            edit_user.birth_day = request.form.get('birth-day')
+            edit_user.signature = request.form.get('signature')
+            db.session.commit()
+            return redirect(url_for('user.show_profile_user', username=username))
+        else:
+            return render_template('user/edit_profile.html',
+                                   title=(_('Редактирование профиля')),
+                                   user=edit_user)
+    else:
         flash(_('Вы не можете редактировать чужие профили'), 'error')
         return redirect(url_for('user.edit_profile', username=current_user.username))
-    edit_user = User.query.filter_by(username=username).first_or_404()
-    if request.method == 'POST':
-        edit_user.username = request.form.get('username')
-        edit_user.password = request.form.get('password')
-        edit_user.web_site = request.form.get('web-site')
-        edit_user.birth_day = request.form.get('birth-day')
-        edit_user.signature = request.form.get('signature')
-        db.session.commit()
-        return redirect(url_for('user.show_profile_user', username=username))
-    else:
-        return render_template('user/edit_profile.html',
-                               title=(_('Редактирование профиля')),
-                               user=edit_user)
 
 
 @user.route('members', methods=['GET', 'POST'])
 def members():
-    new_five_members = User.query.order_by(User.date_joined.desc()).limit(5).all()
+    new_members = User.query.order_by(User.date_joined.desc()).limit(6).all()
     return render_template('user/members.html',
-                           members=new_five_members)
+                           members=new_members)
 
 
 @user.route('admin', methods=['GET', 'POST'])
@@ -229,3 +234,14 @@ def admin():
                                title=(_("Администрирование")),
                                categories=categories,
                                users=users)
+
+
+# Json requests #
+@user.route('search_user', methods=['POST', 'GET'])
+def get_all_users():
+    users = User.query.all()
+    return jsonify({'users': [user.to_json() for user in users]})
+
+@user.route('baned_user', methods=['POST', 'GET'])
+def baned_user():
+    return

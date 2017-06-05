@@ -6,12 +6,13 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from flask_babel import Babel
 from flask_socketio import SocketIO
-
+from flask_marshmallow import  Marshmallow
 babel = Babel()
 db = SQLAlchemy()
 mail = Mail()
 login_manager = LoginManager()
 io = SocketIO()
+ma = Marshmallow()
 
 app = Flask(__name__)
 
@@ -20,7 +21,7 @@ app = Flask(__name__)
 app.config.from_object(environ['APP_SETTINGS'])
 
 db.init_app(app)
-
+ma.init_app(app)
 login_manager.init_app(app)
 login_manager.login_view = 'user.log_in'
 

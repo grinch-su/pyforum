@@ -23,6 +23,17 @@ $("#alert").fadeTo(3000, 500).slideUp(500, function () {
     $("#alert").alert('close');
 });
 
-// $.get('data', function (data, status) {
-//     console.log(data, status)
-// });
+$('#search_user').keyup(function () {
+    $('#result').html('');
+    var searchField = $('#search_user').val();
+    var myExp = new RegExp(searchField, 'i');
+    $.getJSON('search_user', function (data) {
+        $.each(data.users, function (key, val) {
+            if (val.username.search(myExp) !== -1) {
+                $('#result').append('<a href="'+val._link+'"><li class="list-group-item link-class" id="'+key+'">' +
+                    '<img src="'+val.avatar+'" height="40" width="40" class="img-circle" />' +
+                    ' '+val.username+' </li></a>');
+            }
+        })
+    })
+});

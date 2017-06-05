@@ -30,6 +30,7 @@
                         <a href="{{ url_for('user.show_profile_user',username=topic.user.username) }}">
                             <img class="img-rounded media-object" height="100" width="100" alt="" src="{{ topic.user.avatar(128) }}">
                         </a>
+                        <p>{{ topic.user.role() }}</p>
                     </div>
                     <div class="media-body">
                         <p>{{ topic.content | safe }}</p>
@@ -61,6 +62,7 @@
                         <a href="{{ url_for('user.show_profile_user',username=reply.user.username) }}">
                             <img class="img-rounded media-object" height="100" width="100" alt="" src="{{ reply.user.avatar(128) }}">
                         </a>
+                        <p>{{ reply.user.role() }}</p>
                     </div>
                     <div class="media-body">
                         <p>{{ reply.content | safe }}</p>
@@ -109,7 +111,7 @@
             {{ form.csrf_token }}
             {% for error in form.content.errors %}
                 <label for="">{{ error }}</label>
-                {% endfor %}
+            {% endfor %}
             <div class="form-group">
                 {{ form.content(class = 'ckeditor') }}
             </div>

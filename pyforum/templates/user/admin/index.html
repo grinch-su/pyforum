@@ -106,7 +106,7 @@
                         <tr>
                             <td>
                                 <div class="btn-group" role="group" aria-label="...">
-                                    <a class="btn btn-default" href="">
+                                    <a class="btn btn-default" href="{{ url_for('user.edit_profile',username = user.username) }}">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </a>
                                   <form action="" method="POST">
@@ -199,12 +199,5 @@
             type: 'pie',
             data: dataCountTopicsinCategory
         });
-{#        var usersChart = document.getElementById('usersChart').getContext('2d');#}
-{#        var chartUsers = new Chart(usersChart, {#}
-{#            type: 'line',#}
-{#            data: {#}
-{#                labels: []#}
-{#            }#}
-{#        })#}
     </script>
 {% endblock %}
