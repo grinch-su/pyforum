@@ -1,18 +1,15 @@
 from os import environ
 
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, g, flash, url_for, redirect
+from flask import Flask
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_babel import Babel
-from flask_socketio import SocketIO
-from flask_marshmallow import  Marshmallow
+
 babel = Babel()
 db = SQLAlchemy()
 mail = Mail()
 login_manager = LoginManager()
-io = SocketIO()
-ma = Marshmallow()
 
 app = Flask(__name__)
 
@@ -21,7 +18,6 @@ app = Flask(__name__)
 app.config.from_object(environ['APP_SETTINGS'])
 
 db.init_app(app)
-ma.init_app(app)
 login_manager.init_app(app)
 login_manager.login_view = 'user.log_in'
 
@@ -30,7 +26,6 @@ mail.init_app(app)
 
 babel.init_app(app)
 
-io.init_app(app)
 
 if app.debug:
     try:
@@ -43,14 +38,10 @@ if app.debug:
 from pyforum.general import general as general_module
 from pyforum.user import user as user_module
 from pyforum.forum import forum as forum_module
-from pyforum.message import message as message_module
-from pyforum.chat import chat as chat_module
 from  pyforum.admin import admin as admin_module
 
 # registration blueprints
 app.register_blueprint(general_module)
 app.register_blueprint(user_module)
 app.register_blueprint(forum_module)
-app.register_blueprint(message_module)
-app.register_blueprint(chat_module)
 app.register_blueprint(admin_module)

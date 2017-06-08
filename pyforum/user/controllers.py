@@ -1,10 +1,8 @@
-import json
 from datetime import datetime
 
 from itsdangerous import URLSafeTimedSerializer
-from flask import render_template, redirect, url_for, Response, jsonify, flash, request, g, current_app, abort, \
-    make_response
-from flask_login import logout_user, login_required, login_user, current_user, AnonymousUserMixin
+from flask import render_template, redirect, url_for, jsonify, flash, request, g
+from flask_login import logout_user, login_required, login_user, current_user
 from flask_babel import _
 
 from config import Config
@@ -12,7 +10,6 @@ from pyforum import db, login_manager, app, babel
 from pyforum.utils.email import send_confirmation_email, send_reset_password
 from pyforum.user import user
 from pyforum.user.models import User, Anonymous
-from pyforum.forum.models import Topic, Reply, Category
 from pyforum.user.forms import SignUpForm, SignInForm, ResetEmailForm, ResetPasswordForm
 
 login_manager.anonymous_user = Anonymous
@@ -62,7 +59,12 @@ def sign_up():
         new_user = User(username=form.username.data,
                         email=form.email.data,
                         password=form.password.data)
-
+        if User.query.filter_by(email=new_user.email).first():
+            flash(_('Пользователь с таким эл. адресом существует'), 'error')
+            return redirect(url_for('forum.index'))
+        elif User.query.filter_by(username=new_user.username).first():
+            flash(_('Пользователь с таким эл. адресом существует'),'error')
+            return redirect(url_for('forum.index'))
         new_user.ip = request.headers.get('X-Forwarded-For', request.remote_addr)
 
         db.session.add(new_user)
@@ -92,7 +94,7 @@ def confirm_email(token):
     user = User.query.filter_by(email=email).first()
 
     if user.activated:
-        flash('Аккаунт уже подтвержден.', 'success')
+        flash(_('Аккаунт уже подтвержден.'), 'error')
     else:
         user.activated = True
         db.session.add(user)
@@ -104,10 +106,10 @@ def confirm_email(token):
 @user.route('login', methods=['GET', 'POST'])
 def log_in():
     if current_user.is_authenticated:
-        flash(_('Вы уже вошли в систему под ником {user}'.format(user=current_user.username)), 'error')
+        flash(_('Вы уже вошли в систему под ником {user}'.format(user=current_user.username)), 'info')
         return redirect(url_for('forum.index'))
-    form = SignInForm()
-    if form.validate_on_submit():
+    form = SignInForm(prefix="form")
+    if form.validate_on_submit() and form.submit.data:
         registered_user = User.query.filter_by(email=form.email.data,
                                                password=form.password.data).first()
         if registered_user is None:
@@ -118,12 +120,15 @@ def log_in():
             flash(_('Вы успешно вошли в систему'), 'success')
             return redirect(url_for('forum.index'))
 
-    form_reset = ResetEmailForm()
-    if form_reset.validate_on_submit():
-        reset_user = User.query.filter_by(email=form_reset.email.data).first_or_404()
-
+    form_reset = ResetEmailForm(prefix="form_reset")
+    if form_reset.validate_on_submit() and form_reset.submit.data:
+        reset_user = User.query.filter_by(email=form_reset.email.data).first()
+        print(reset_user)
+        if reset_user is None:
+            flash(_('Пользоватль с таким эл. адресом не зарегестрирован'))
+            return redirect(url_for('user.sign_up'))
         send_reset_password(reset_user.email)
-        flash(_('Проверьте почту'), 'info')
+        flash(_('Проверьте вашу почту, и подтвердите регистрацию'), 'info')
         return redirect(url_for('forum.index'))
 
     return render_template('user/auth/log_in.html',
@@ -140,9 +145,7 @@ def reset_with_token(token):
                                          salt='email-confirmation-salt',
                                          max_age=3600)
     except:
-        flash(_(
-            'Ссылка восстановления более не действительна: время её действия истекло или она уже была использована ранее.'),
-              'error')
+        flash(_('Ссылка восстановления более не действительна: время её действия истекло или она уже была использована ранее.'), 'error')
         return redirect(url_for('user.login'))
 
     form = ResetPasswordForm()
@@ -158,7 +161,7 @@ def reset_with_token(token):
         return redirect(url_for('user.log_in'))
 
     return render_template('user/auth/reset_with_token.html',
-                           title='Восстановление пароля',
+                           title=_('Восстановление пароля'),
                            form=form,
                            token=token)
 
@@ -177,19 +180,12 @@ def show_profile_user(username):
     user_item = User.query.filter_by(username=username).first_or_404()
     topics = user_item.topics.order_by('date_created desc').all()
     replies = user_item.replies.order_by('date_created desc').all()
-    if user_item.id == g.user.id:
-        return render_template('user/profile.html',
-                               title=(_('Профиль пользователя - ')),
-                               user=user_item,
-                               topics=topics,
-                               replies=replies)
 
-    elif user_item.id != g.user.id:
-        return render_template('user/profile.html',
-                               title=(_('Профиль пользователя - ')),
-                               user=user_item,
-                               topics=topics,
-                               replies=replies)
+    return render_template('user/profile.html',
+                           title=(_('Профиль пользователя - ')),
+                           user=user_item,
+                           topics=topics,
+                           replies=replies)
 
 
 @user.route('profile/edit/<string:username>', methods=['GET', 'POST'])
@@ -226,7 +222,3 @@ def members():
 def get_all_users():
     users = User.query.all()
     return jsonify({'users': [user.to_json() for user in users]})
-
-@user.route('baned_user', methods=['POST', 'GET'])
-def baned_user():
-    return

@@ -18,15 +18,6 @@ class Category(db.Model):
         self.name = name
         self.description = description
 
-    def to_json(self):
-        category = {
-            'id': self.id,
-            'name': self.name,
-            # 'topics': self.topics,
-            # 'replies': self.replies
-        }
-        return category
-
     def __repr__(self):
         return '<Category {} {}>'.format(self.name, self.description)
 
@@ -42,7 +33,6 @@ class Topic(db.Model):
     views = db.Column(db.Integer, default=0)
     locked = db.Column(db.Boolean, default=False)
 
-    tags = db.relationship('Tag', backref='topic', lazy='dynamic')
     replies = db.relationship('Reply', backref='topic', lazy='dynamic')
 
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
@@ -74,31 +64,3 @@ class Reply(db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.content)
-
-
-class Tag(db.Model):
-    __tablename__ = 'tag'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    topic_id = db.Column(db.Integer, db.ForeignKey('topic.id'))
-
-    def __init__(self, name):
-        self.name = name
-
-    def __repr__(self):
-        return '<Tag {}>'.format(self.name)
-
-
-# class Like(db.Model):
-#     __tablename_='like'
-#
-#     id = db.Column(db.Integer, primary_key=True)
-#
-#     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-#     topic_id = db.Column(db.Integer, db.ForeignKey('topic.id'))
-#
-#     def __init__(self):
-#         pass

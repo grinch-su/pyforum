@@ -15,10 +15,6 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
 
-
-    #Flask-Bcrypt
-    BCRYPT_LOG_ROUNDS = 12
-
     # Flask-Mail
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 465
@@ -34,8 +30,7 @@ class Config(object):
     # Flask-babel for localization
     SUPPORTED_LANGUAGES = {
         'en': 'English',
-        'ru': 'Russian',
-        'md': 'Moldavian'
+        'ru': 'Russian'
     }
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"

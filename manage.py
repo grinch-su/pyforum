@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-from flask_script import Manager, Server
+from flask_script import Manager, Server, prompt_bool
 from flask_migrate import Migrate, MigrateCommand
+from flask_babel import _
 
 from pyforum import app
 from pyforum import db
@@ -15,20 +16,25 @@ manager.add_command('db', MigrateCommand)
 
 @manager.command
 def create_db():
+    "create database tables fro SQLAlchemy models"
     db.create_all()
 
 
 @manager.command
-def drop_all():
-    db.drop_all()
+def drop_db():
+    "drops db tables"
+    if prompt_bool(_("Вы действительн хотите потерять все свои данные?")):
+        db.drop_all()
 
 
 @manager.command
 def create_admin():
+    "create user admin"
     user = User(username='admin',
-                email='grinchfedorov@gmail.com',
+                email='admin@admin.com',
                 password='admin'
                 )
+
     user.admin = True
     db.session.add(user)
     db.session.commit()
