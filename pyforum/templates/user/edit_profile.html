@@ -30,11 +30,11 @@
             <div class="form-group">
                 <label for="inputWebSite" class="col-sm-2 control-label">{{ _('Веб-сайт') }}</label>
                 <div class="col-sm-10">
-                    <input  class="form-control" id="inputWebSite" name="web-site" type="url" value="{{ user.web_site }}">
+                    <input  class="form-control" id="inputWebSite" name="web-site" placeholder="http://example.com" type="text" value="{{ user.web_site }}">
                 </div>
             </div>
             <div class="form-group">
-                <label for="textAreaSignature" class="col-sm-2 control-label">Подпись</label>
+                <label for="textAreaSignature" class="col-sm-2 control-label">Подпись:</label>
                 <div class="col-sm-10">
                     <textarea name="signature" id="textAreaSignature" class="form-control ckeditor">
                         {{ user.signature | safe}}
@@ -47,7 +47,6 @@
                     <button type="submit" class="btn btn-primary">{{ _('Сохранить') }}</button>
                 </div>
             </div>
-
         </form>
 
 {% endblock %}

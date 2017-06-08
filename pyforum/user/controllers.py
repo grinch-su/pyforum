@@ -221,21 +221,6 @@ def members():
                            members=new_members)
 
 
-@user.route('admin', methods=['GET', 'POST'])
-@login_required
-def admin():
-    if not current_user.admin:
-        flash(_('Нет доступа к админ панели'), 'error')
-        return redirect(url_for('forum.index'))
-    if request.method == 'GET':
-        categories = Category.query.all()
-        users = User.query.all()
-        return render_template('user/admin/index.html',
-                               title=(_("Администрирование")),
-                               categories=categories,
-                               users=users)
-
-
 # Json requests #
 @user.route('search_user', methods=['POST', 'GET'])
 def get_all_users():

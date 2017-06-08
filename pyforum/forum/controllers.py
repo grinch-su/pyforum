@@ -31,7 +31,7 @@ def index():
 def category(category_name, page=1):
     topics_per_page = 5
     category = Category.query.filter_by(name=category_name).first_or_404()
-    topics = Topic.query.filter_by(category_id=category.id).paginate(page, topics_per_page, True)
+    topics = Topic.query.filter_by(category_id=category.id).order_by(Topic.date_created.desc()).paginate(page, topics_per_page, True)
     return render_template('forum/category_topics.html',
                            title=category_name,
                            topics=topics,
@@ -126,7 +126,7 @@ def delete_topic(id):
         db.session.delete(del_topic)
         db.session.commit()
         if current_user.admin:
-            return redirect(url_for('user.admin'))
+            return redirect(url_for('admin.admin_topics'))
         elif del_topic.user_id == current_user.id:
             return redirect(url_for('forum.index'))
     elif del_topic.user_id != current_user.id:
@@ -162,3 +162,9 @@ def edit_topic(id):
     elif topic_item.user_id != current_user.id:
         flash(_("Нет доступа к удалению даунного обсуждения"), 'error')
         return redirect(url_for('forum.index'))
+
+
+@forum.route('category', methods=['GET'])
+def get_all_categories():
+    all_categories = Category.query.all()
+    return jsonify({'categories': [category.to_json() for category in all_categories]})

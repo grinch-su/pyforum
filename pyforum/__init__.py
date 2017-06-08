@@ -45,6 +45,7 @@ from pyforum.user import user as user_module
 from pyforum.forum import forum as forum_module
 from pyforum.message import message as message_module
 from pyforum.chat import chat as chat_module
+from  pyforum.admin import admin as admin_module
 
 # registration blueprints
 app.register_blueprint(general_module)
@@ -52,3 +53,4 @@ app.register_blueprint(user_module)
 app.register_blueprint(forum_module)
 app.register_blueprint(message_module)
 app.register_blueprint(chat_module)
+app.register_blueprint(admin_module)

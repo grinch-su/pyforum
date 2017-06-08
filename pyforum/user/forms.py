@@ -15,7 +15,7 @@ class SignUpForm(FlaskForm):
 
 
 class SignInForm(FlaskForm):
-    email = EmailField(_('Ващ эл. адрес:'), validators=[InputRequired(_('Введите эл. адрес!'))])
+    email = EmailField(_('Ваш эл. адрес:'), validators=[InputRequired(_('Введите эл. адрес!'))])
     password = PasswordField(_('Пароль:'), validators=[InputRequired(_('Введите пароль!'))])
     re_captcha = RecaptchaField()
     submit = SubmitField(_('Авторизоваться'))

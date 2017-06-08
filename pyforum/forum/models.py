@@ -18,6 +18,15 @@ class Category(db.Model):
         self.name = name
         self.description = description
 
+    def to_json(self):
+        category = {
+            'id': self.id,
+            'name': self.name,
+            # 'topics': self.topics,
+            # 'replies': self.replies
+        }
+        return category
+
     def __repr__(self):
         return '<Category {} {}>'.format(self.name, self.description)
 
