@@ -20,10 +20,10 @@
             {% endif %}
             <p>{{ _('Кол-во ответов:') }}{{ replies | count }}</p>
             <p>{{ _('Кол-во обсуждений:') }}{{ topics | count }}</p>
-            <p>{{ _('Дата регистрации:') }}{{ user.date_joined.strftime('%d-%m-%Y в %H:%M %p') }}</p>
+            <p>{{ _('Дата регистрации:') }}{{ user.date_joined }}</p>
             {% if user.last_visit == None %}
             {% else %}
-                <p>{{ _('Последняя активность:') }}{{ user.last_visit.strftime('%d-%m-%Y в %H:%M %p') }}</p>
+                <p>{{ _('Последняя активность:') }}{{ user.last_visit }}</p>
             {% endif %}
         </div>
 
@@ -49,7 +49,7 @@
                                 <a href="{{ url_for('forum.topic',category_name=topic.category.name,topic_id = topic.id,page=1) }}">
                                     <h4 class="media-heading">{{ topic.title }}</h4>
                                 </a>
-                                <p>{{ _('Дата создания:') }}{{ topic.date_created.strftime('%d-%m-%Y в %H:%M %p') }}</p>
+                                <p>{{ _('Дата создания:') }}{{ topic.date_created }}</p>
                                 <p class="text-muted">
                                     {{ _('Ответов:') }}{{ topic.replies.count() }}
                                     {{ _('Просмотров:') }}{{ topic.views }}
@@ -83,7 +83,7 @@
                                         {{ _('Автор обсуждения: ') }}{{ user.username }}
                                     </p>
                                     <p class="text-muted">
-                                        {{ _('Дата:') }}{{ reply.date_created.strftime('%d-%m-%Y в %H:%M %p') }}
+                                        {{ _('Дата:') }}{{ reply.date_created }}
                                     </p>
                                     <p>{{ reply.content | safe}}</p>
                                 </div>

@@ -18,6 +18,7 @@ manager.add_command('db', MigrateCommand)
 def create_db():
     "create database tables fro SQLAlchemy models"
     db.create_all()
+    return _'База создана'
 
 
 @manager.command
