@@ -28,6 +28,7 @@ def get_timezone():
         return user.timezone
 
 
+# login manager
 @login_manager.user_loader
 def load_user(id):
     return User.query.get(id)
@@ -42,6 +43,7 @@ def unauthorized_callback():
 @app.before_request
 def before_request():
     g.user = current_user
+    g.user.locale = get_locale()
     if g.user.is_authenticated:
         g.user.last_visit = datetime.utcnow()
         db.session.commit()
@@ -182,7 +184,7 @@ def show_profile_user(username):
     replies = user_item.replies.order_by('date_created desc').all()
 
     return render_template('user/profile.html',
-                           title=(_('Профиль пользователя - ')),
+                           title=_('Профиль пользователя - '),
                            user=user_item,
                            topics=topics,
                            replies=replies)
@@ -203,7 +205,7 @@ def edit_profile(username):
             return redirect(url_for('user.show_profile_user', username=username))
         else:
             return render_template('user/edit_profile.html',
-                                   title=(_('Редактирование профиля')),
+                                   title=_('Редактирование профиля'),
                                    user=edit_user)
     else:
         flash(_('Вы не можете редактировать чужие профили'), 'error')
