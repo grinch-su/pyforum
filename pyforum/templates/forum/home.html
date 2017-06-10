@@ -17,10 +17,10 @@
             </div>
         {% else %}
             <div class="alert alert-info" role="alert">
-            Чтобы создать обсуждение, пожалуйста
-            <a href="{{ url_for('user.log_in') }}" class="alert-link">авторизуйтесь</a>
-            или
-            <a href="{{ url_for('user.sign_up') }}" class="alert-link">зарегистрируйтесь.</a>
+            {{ _('Чтобы создать обсуждение, пожалуйста ') }}
+            <a href="{{ url_for('user.log_in') }}" class="alert-link">{{ _('авторизуйтесь') }}</a>
+            {{ _('или') }}
+            <a href="{{ url_for('user.sign_up') }}" class="alert-link">{{ _('зарегистрируйтесь.') }}</a>
         </div>
         {% endif %}
     </div>
@@ -37,7 +37,7 @@
                         </a>
                         <p>{{ category.description | safe }}</p>
                         <p class="text-muted">
-                            Обсуждений: {{ category.topics.count()}}
+                            {{ _('Обсуждений: ') }}{{ category.topics.count()}}
                         </p>
                     </div>
                 </div>

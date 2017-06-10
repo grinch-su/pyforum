@@ -8,16 +8,16 @@
     <form method="POST" role="form" action="{{ url_for('forum.create_topic') }}">
         {{ form.csrf_token }}
         <div class="form-group form-group-lg">
-            {{ form.title(class="form-control", placeholder="Заголовок")}}
+            {{ form.title(class="form-control", placeholder=_('Заголовок'))}}
         </div>
         <div class="form-group">
             <div class="input-group">
             <span class="input-group-addon">{{ _('Выберите категорию') }}</span>
-                    <select name="category_select" class="selectpicker form-control">
-                        {% for category in categories %}
+                <select name="category_select" class="selectpicker form-control">
+                    {% for category in categories %}
                         <option value="{{ category.id }}">{{ category.name }}</option>
-                        {% endfor %}
-                    </select>
+                    {% endfor %}
+                </select>
             </div>
         </div>
         <div class="form-group">

@@ -3,6 +3,7 @@ from datetime import datetime
 
 from flask import url_for
 from flask_login import UserMixin, AnonymousUserMixin
+from flask_babel import _
 
 from pyforum import db
 
@@ -38,9 +39,9 @@ class User(db.Model, UserMixin):
 
     def role(self):
         if self.admin:
-            return 'Администратор'
+            return _('Администратор')
         else:
-            return 'Пользователь'
+            return _('Пользователь')
 
     def to_json(self):
         json_user = {

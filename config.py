@@ -32,7 +32,7 @@ class Config(object):
         'en': 'English',
         'ru': 'Russian'
     }
-    BABEL_DEFAULT_LOCALE = "en"
+    BABEL_DEFAULT_LOCALE = "ru"
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
     #  reCAPTCHA

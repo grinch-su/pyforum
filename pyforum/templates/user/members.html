@@ -6,7 +6,7 @@
 
 {% block content %}
     <div class="page-header">
-        <h2>Пользователи</h2>
+        <h2>{{ _('Пользователи') }}</h2>
     </div>
     <ul class="list-group">
         {% for member in members %}
@@ -23,11 +23,11 @@
                         </a>
                         <p>{{ member.role() }}</p>
                         <p class="text-muted">
-                            Ответов: {{ member.replies.count() }}
-                            Обсуждений: {{ member.topics.count()  }}
+                            {{ _('Ответов: ') }}{{ member.replies.count() }}
+                            {{ _('Обсуждений: ') }}{{ member.topics.count()  }}
                         </p>
                         <p class="text-muted">
-                            Заходил {{ member.last_visit}}
+                            {{ _('Заходил') }} {{ member.last_visit}}
                         </p>
                     </div>
                 </div>
@@ -37,11 +37,11 @@
 {% endblock content %}
 
 {% block sidebar %}
-    <h4>Поиск участников</h4>
+    <h4>{{ _('Поиск участников') }}</h4>
     <input type="text" class="form-control" id="search_user" name="search_user" value="" placeholder="Поиск...">
     <ul id="result" class="list-group">
     </ul>
-    <h4>Новые пользователи</h4>
+    <h4>{{ _('Новые пользователи') }}</h4>
       <div class="row">
         {% for member in members  %}
             <div class="col-xs-4 col-md-4">

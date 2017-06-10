@@ -34,7 +34,7 @@
                                 </span>
                             </a>
                         </p>
-                        <p>{{ topic.date_created.strftime('%d-%m-%Y в %H:%M %p') }}</p>
+                        <p>{{ topic.date_created }}</p>
                         <p class="text-muted">
                             Ответов: {{ topic.replies.count() }}
                             Просмотров: {{ topic.views }}

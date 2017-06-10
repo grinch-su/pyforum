@@ -16,7 +16,7 @@
                 <p class="text-danger">{{ _('Аккаунт не активирован') }}</p>
             {% endif %}
             {% if user.web_site %}
-                <p>Веб-сайт: <a href="{{ user.web_site }}" target="_blank">{{ user.web_site }}</a></p>
+                <p>{{ _('Веб-сайт:') }} <a href="{{ user.web_site }}" target="_blank">{{ user.web_site }}</a></p>
             {% endif %}
             <p>{{ _('Кол-во ответов:') }}{{ replies | count }}</p>
             <p>{{ _('Кол-во обсуждений:') }}{{ topics | count }}</p>
