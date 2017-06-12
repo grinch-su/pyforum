@@ -1,0 +1,643 @@
+# English translations for PROJECT.
+# Copyright (C) 2017 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-06-12 23:54+0300\n"
+"PO-Revision-Date: 2017-06-12 22:11+0300\n"
+"Last-Translator: \n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: manage.py:21
+msgid "Все таблицы созданы"
+msgstr "All tables are created"
+
+#: manage.py:27
+msgid "Вы действительн хотите потерять все свои данные?"
+msgstr "You validly want to lose all my data?"
+
+#: pyforum/admin/controllers.py:15 pyforum/admin/controllers.py:29
+msgid "Нет доступа к админ панели"
+msgstr "Can't access Admin Panel"
+
+#: pyforum/admin/controllers.py:20 pyforum/admin/controllers.py:34
+msgid "Администрирование"
+msgstr "Administration"
+
+#: pyforum/forum/controllers.py:63
+msgid "Ответ отправлен"
+msgstr "Answer correctly sent"
+
+#: pyforum/forum/controllers.py:81
+msgid "Войдите в систему что-бы создать обсуждение!"
+msgstr "Log in to create a discussion!"
+
+#: pyforum/forum/controllers.py:86
+msgid "Нет категорий для создания обсуждения"
+msgstr "No categories to create discussion"
+
+#: pyforum/forum/controllers.py:95
+msgid "Обсуждение было создано успешно"
+msgstr "Discussion was created successfully"
+
+#: pyforum/forum/controllers.py:97
+msgid "Создание нового обсуждения"
+msgstr "Create a new discussion"
+
+#: pyforum/forum/controllers.py:107
+msgid "Нет доступа к созданию категорий."
+msgstr "You do not have access to create categories."
+
+#: pyforum/forum/controllers.py:116
+msgid "Категория была успешно создана"
+msgstr "Category was created successfully"
+
+#: pyforum/forum/controllers.py:120
+msgid "Создание новой категории"
+msgstr "Creating a new category"
+
+#: pyforum/forum/controllers.py:138 pyforum/forum/controllers.py:169
+msgid "Нет доступа к удалению даунного обсуждения"
+msgstr "You do not have access to the delete discussion daunnogo"
+
+#: pyforum/forum/controllers.py:157
+msgid "Обсуждения отредактировано успешно"
+msgstr "Discussions edited successfully"
+
+#: pyforum/forum/forms.py:9 pyforum/forum/forms.py:28
+msgid "Введите заголовок!"
+msgstr "Enter the title!"
+
+#: pyforum/forum/forms.py:10
+msgid "Введите вопрос"
+msgstr "Enter question"
+
+#: pyforum/forum/forms.py:16
+msgid "Введите ответ!"
+msgstr "Answer correctly sent!"
+
+#: pyforum/forum/forms.py:22
+msgid "Введите название!"
+msgstr "Please enter title!"
+
+#: pyforum/forum/forms.py:23
+msgid "Введите описание!"
+msgstr "Enter the description!"
+
+#: pyforum/forum/forms.py:29
+msgid "Введите содержание!"
+msgstr "Enter the content!"
+
+#: pyforum/templates/layout.html:37 pyforum/templates/layout_admin.html:29
+msgid "Форум"
+msgstr "Discussion Forums"
+
+#: pyforum/templates/layout.html:42 pyforum/templates/layout_admin.html:56
+#: pyforum/templates/user/members.html:9
+msgid "Пользователи"
+msgstr "Users"
+
+#: pyforum/templates/layout.html:51 pyforum/templates/layout_admin.html:36
+msgid "Профиль"
+msgstr "Profile"
+
+#: pyforum/templates/layout.html:53 pyforum/templates/layout_admin.html:38
+msgid "Редактировать"
+msgstr "Edit profile"
+
+#: pyforum/templates/layout.html:55
+msgid "Админ панель"
+msgstr "Dashboard"
+
+#: pyforum/templates/layout.html:58 pyforum/templates/layout_admin.html:40
+msgid "Выход"
+msgstr "Output"
+
+#: pyforum/templates/layout.html:62 pyforum/templates/layout_admin.html:44
+#: pyforum/templates/user/auth/log_in.html:48
+msgid "Войти"
+msgstr "Sign in"
+
+#: pyforum/templates/layout.html:96 pyforum/templates/user/auth/sign_up.html:47
+msgid "Зарегистрироваться"
+msgstr "Sign Up"
+
+#: pyforum/templates/admin/tasks.html:11 pyforum/templates/layout_admin.html:55
+msgid "Обсуждения"
+msgstr "Discussions"
+
+#: pyforum/templates/admin/tasks.html:17 pyforum/templates/admin/users.html:13
+msgid "Действия"
+msgstr "Actions"
+
+#: pyforum/templates/admin/tasks.html:18 pyforum/templates/admin/users.html:14
+msgid "id"
+msgstr "id"
+
+#: pyforum/templates/admin/tasks.html:19
+msgid "Автор"
+msgstr "Author"
+
+#: pyforum/templates/admin/tasks.html:20
+msgid "Название"
+msgstr "Title"
+
+#: pyforum/templates/admin/tasks.html:21
+msgid "Содержание"
+msgstr "Contents"
+
+#: pyforum/templates/admin/tasks.html:22
+msgid "Дата создания"
+msgstr "Creation date"
+
+#: pyforum/templates/admin/tasks.html:23
+msgid "Просмотры"
+msgstr "Views"
+
+#: pyforum/templates/admin/tasks.html:24 pyforum/templates/forum/home.html:85
+msgid "Ответов"
+msgstr "Answers"
+
+#: pyforum/templates/admin/tasks.html:25
+msgid "Заперта"
+msgstr "Locked"
+
+#: pyforum/templates/admin/users.html:15
+#: pyforum/templates/user/auth/sign_up.html:9
+msgid "Имя пользователя"
+msgstr "Username"
+
+#: pyforum/templates/admin/users.html:16
+msgid "Эл.адрес"
+msgstr "E-mail"
+
+#: pyforum/templates/admin/users.html:17
+msgid "Пароль"
+msgstr "Password"
+
+#: pyforum/templates/admin/users.html:18
+msgid "IP"
+msgstr "IP"
+
+#: pyforum/templates/admin/users.html:19
+msgid "Дата регистрации"
+msgstr "Date sign up"
+
+#: pyforum/templates/admin/users.html:20
+msgid "Последний визит"
+msgstr "Last visit"
+
+#: pyforum/templates/admin/users.html:21
+msgid "Веб-сайт"
+msgstr "Web-site"
+
+#: pyforum/templates/admin/users.html:22
+msgid "Активация"
+msgstr "Activation"
+
+#: pyforum/templates/admin/users.html:23
+msgid "Админ"
+msgstr "Admin"
+
+#: pyforum/templates/admin/users.html:24
+msgid "Бан"
+msgstr "Ban"
+
+#: pyforum/templates/admin/users.html:25
+msgid "Дата рождения"
+msgstr "Birth-day"
+
+#: pyforum/templates/forum/create_category.html:10
+msgid "Название категории..."
+msgstr "Name of category..."
+
+#: pyforum/templates/forum/create_topic.html:11
+msgid "Заголовок"
+msgstr "Title"
+
+#: pyforum/templates/forum/create_topic.html:15
+msgid "Выберите категорию:"
+msgstr "Select category:"
+
+#: pyforum/templates/forum/create_topic.html:26
+msgid "Создать"
+msgstr "Create"
+
+#: pyforum/templates/forum/edit_topic.html:15
+msgid "Выберите категорию"
+msgstr "Select category:"
+
+#: pyforum/templates/forum/edit_topic.html:30
+#: pyforum/templates/user/auth/reset_with_token.html:24
+#: pyforum/templates/user/edit_profile.html:61
+msgid "Сохранить"
+msgstr "Save changes"
+
+#: pyforum/templates/forum/home.html:13
+msgid "Создать обсуждение"
+msgstr "Create a discussion"
+
+#: pyforum/templates/forum/home.html:15
+msgid "Создать категорию"
+msgstr "Create category"
+
+#: pyforum/templates/forum/home.html:20
+msgid "Чтобы создать обсуждение, пожалуйста "
+msgstr "To create a discussion, please "
+
+#: pyforum/templates/forum/home.html:21
+msgid "авторизуйтесь"
+msgstr "authorized"
+
+#: pyforum/templates/forum/home.html:22
+msgid "или"
+msgstr "or"
+
+#: pyforum/templates/forum/home.html:23
+msgid "зарегистрируйтесь."
+msgstr "please register."
+
+#: pyforum/templates/forum/home.html:40 pyforum/templates/user/members.html:27
+msgid "Обсуждений: "
+msgstr "Discussion: "
+
+#: pyforum/templates/forum/home.html:51
+msgid "Новые обсуждения"
+msgstr "New discussion"
+
+#: pyforum/templates/forum/home.html:78
+msgid "Статистика"
+msgstr "Statistics"
+
+#: pyforum/templates/forum/home.html:81
+msgid "Обсуждений"
+msgstr "Count of discussions"
+
+#: pyforum/templates/forum/home.html:89
+msgid "Участников"
+msgstr "Members"
+
+#: pyforum/templates/forum/home.html:95
+msgid "Новый участник"
+msgstr "New Member"
+
+#: pyforum/templates/forum/topic.html:17 pyforum/templates/user/members.html:26
+msgid "Ответов: "
+msgstr "Answers: "
+
+#: pyforum/templates/forum/topic.html:18
+msgid "Просмотров: "
+msgstr "Views: "
+
+#: pyforum/templates/general/404.html:2
+msgid "Ошибка 404 Сраница не найдена"
+msgstr "Error 404, Page not found"
+
+#: pyforum/templates/general/404.html:5 pyforum/templates/general/500.html:4
+msgid "Forum-flask - Ошибка"
+msgstr "Forum-flask error"
+
+#: pyforum/templates/general/404.html:6
+msgid "Запрашиваемая страница не может быть найдена."
+msgstr "The page you requested cannot be found."
+
+#: pyforum/templates/general/500.html:2 pyforum/templates/general/500.html:5
+msgid "Ошибка 500 Внутренняя ошибка сервера"
+msgstr "Error 500 Internal server error"
+
+#: pyforum/templates/user/auth/sign_up.html:7
+#: pyforum/templates/user/edit_profile.html:10
+msgid "Имя пользователя: "
+msgstr "Username: "
+
+#: pyforum/templates/user/auth/log_in.html:21
+#: pyforum/templates/user/auth/reset_with_token.html:11
+#: pyforum/templates/user/edit_profile.html:17
+msgid "Пароль: "
+msgstr "Password: "
+
+#: pyforum/templates/user/edit_profile.html:24
+msgid "Дата рождения: "
+msgstr "Birth-day: "
+
+#: pyforum/templates/user/edit_profile.html:31
+msgid "Веб-сайт: "
+msgstr "Web-site: "
+
+#: pyforum/templates/user/edit_profile.html:37
+msgid "Язык: "
+msgstr "Language: "
+
+#: pyforum/templates/user/edit_profile.html:41
+msgid "Русский"
+msgstr "Russian"
+
+#: pyforum/templates/user/edit_profile.html:44
+msgid "Английский"
+msgstr "English"
+
+#: pyforum/templates/user/edit_profile.html:51
+msgid "Подпись: "
+msgstr "Signature: "
+
+#: pyforum/templates/user/members.html:30
+msgid "Заходил"
+msgstr "I went in"
+
+#: pyforum/templates/user/members.html:40
+msgid "Поиск участников"
+msgstr "Search for participants"
+
+#: pyforum/templates/user/members.html:41
+msgid "Поиск..."
+msgstr "Search..."
+
+#: pyforum/templates/user/members.html:44
+msgid "Новые пользователи"
+msgstr "New Users"
+
+#: pyforum/templates/user/profile.html:11
+msgid "Имя пользоавтеля: "
+msgstr "Username: "
+
+#: pyforum/templates/user/auth/log_in.html:10
+#: pyforum/templates/user/profile.html:12
+msgid "Эл. адрес: "
+msgstr "E-mail: "
+
+#: pyforum/templates/user/profile.html:14
+msgid "Аккаунт активирован"
+msgstr "Account activated"
+
+#: pyforum/templates/user/profile.html:16
+msgid "Аккаунт не активирован"
+msgstr "Account not activated"
+
+#: pyforum/templates/user/profile.html:19
+msgid "Веб-сайт:"
+msgstr "Web-site:"
+
+#: pyforum/templates/user/profile.html:21
+msgid "Кол-во ответов:"
+msgstr "Count replies:"
+
+#: pyforum/templates/user/profile.html:22
+msgid "Кол-во обсуждений:"
+msgstr "Count of discussions:"
+
+#: pyforum/templates/user/profile.html:23
+msgid "Дата регистрации:"
+msgstr "Date sign up:"
+
+#: pyforum/templates/user/profile.html:26
+msgid "Последняя активность:"
+msgstr "Latest activity:"
+
+#: pyforum/templates/user/profile.html:33
+msgid "Обсжудения"
+msgstr "Discussions"
+
+#: pyforum/templates/user/profile.html:34
+msgid "Ответы"
+msgstr "Replies"
+
+#: pyforum/templates/user/profile.html:52
+msgid "Дата создания:"
+msgstr "Date created:"
+
+#: pyforum/templates/user/profile.html:54
+msgid "Ответов:"
+msgstr "Replies:"
+
+#: pyforum/templates/user/profile.html:55
+msgid "Просмотров:"
+msgstr "Views:"
+
+#: pyforum/templates/user/profile.html:63
+msgid "Пользователь не создавал обсуждений"
+msgstr "The user did not create any discussions"
+
+#: pyforum/templates/user/profile.html:77
+msgid "В обсуждении "
+msgstr "In the discussion "
+
+#: pyforum/templates/user/profile.html:83
+msgid "Автор обсуждения: "
+msgstr "The author of the discussion: "
+
+#: pyforum/templates/user/profile.html:86
+msgid "Дата:"
+msgstr "Date:"
+
+#: pyforum/templates/user/profile.html:95
+msgid "Пользователь не отвечал"
+msgstr "User did not reply"
+
+#: pyforum/templates/user/auth/banned.html:10
+msgid "Ваш аккаунт забанен!"
+msgstr "Your account banned!"
+
+#: pyforum/templates/user/auth/email_confirmation.html:1
+msgid "Ваша учетная запись создана, "
+msgstr "Your account has been created successfully, "
+
+#: pyforum/templates/user/auth/email_confirmation.html:1
+msgid "подтвердите"
+msgstr "confirm"
+
+#: pyforum/templates/user/auth/email_confirmation.html:1
+msgid "ее."
+msgstr "her."
+
+#: pyforum/templates/user/auth/email_reset.html:1
+msgid "Восстановить пароль"
+msgstr "Reset the password"
+
+#: pyforum/templates/user/auth/log_in.html:26
+msgid "Забыли пароль?"
+msgstr "Forgot your password?"
+
+#: pyforum/templates/user/auth/log_in.html:60 pyforum/user/controllers.py:172
+#: pyforum/utils/email.py:50 pyforum/utils/email.py:52
+msgid "Восстановление пароля"
+msgstr "Password recovery"
+
+#: pyforum/templates/user/auth/log_in.html:64
+msgid "Эл.адрес: "
+msgstr "E-mail: "
+
+#: pyforum/templates/user/auth/log_in.html:71
+msgid "Закрыть"
+msgstr "Close"
+
+#: pyforum/templates/user/auth/log_in.html:72
+msgid "Отправить"
+msgstr "Send"
+
+#: pyforum/templates/user/auth/reset_with_token.html:17
+#: pyforum/templates/user/auth/sign_up.html:30
+msgid "Подтвердите пароль: "
+msgstr "Confirm the password: "
+
+#: pyforum/templates/user/auth/sign_up.html:2
+msgid "Регистрация"
+msgstr "Sign up"
+
+#: pyforum/templates/user/auth/sign_up.html:18
+msgid "Эл. адрес:"
+msgstr "E-mail:"
+
+#: pyforum/templates/user/auth/sign_up.html:24
+msgid "Пароль:"
+msgstr "Password:"
+
+#: pyforum/user/controllers.py:41
+msgid "Пожалуйста авторизируйтесь!"
+msgstr "Please log in!"
+
+#: pyforum/user/controllers.py:60
+msgid "Вы уже вошли в систему под ником {username}"
+msgstr "You are already logged in {username}"
+
+#: pyforum/user/controllers.py:68 pyforum/user/controllers.py:71
+msgid "Пользователь с таким эл. адресом существует"
+msgstr "User with such email. Address exists"
+
+#: pyforum/user/controllers.py:80
+msgid ""
+"Пожалуйста, проверьте свой адрес электронной почты, чтобы подтвердить "
+"свой адрес электронной почты"
+msgstr "Please check your email address to confirm your email address"
+
+#: pyforum/user/controllers.py:97
+msgid "Ссылка подтверждения недействительна или время истекло."
+msgstr "The verification link is invalid or the time has expired."
+
+#: pyforum/user/controllers.py:103
+msgid "Аккаунт уже подтвержден."
+msgstr "Account already verified."
+
+#: pyforum/user/controllers.py:108
+msgid "Спасибо, что подтвердили свой адрес электронной почты!"
+msgstr "Thank you for confirming your email address!"
+
+#: pyforum/user/controllers.py:116
+msgid "Вы уже вошли в систему под ником {user}"
+msgstr "You are already logged in {user}"
+
+#: pyforum/user/controllers.py:123
+msgid "Неверный эл. адрес или пароль"
+msgstr "Invalid email Address or password"
+
+#: pyforum/user/controllers.py:127
+msgid "Вы успешно вошли в систему"
+msgstr "You have successfully logged in"
+
+#: pyforum/user/controllers.py:135
+msgid "Пользоватль с таким эл. адресом не зарегестрирован"
+msgstr "There is no user registered with that email address"
+
+#: pyforum/user/controllers.py:138
+msgid "Проверьте вашу почту, и подтвердите регистрацию"
+msgstr "Check your mail, and confirm the registration"
+
+#: pyforum/user/controllers.py:144
+msgid "Авторизация"
+msgstr "Authorization"
+
+#: pyforum/user/controllers.py:156
+msgid ""
+"Ссылка восстановления более не действительна: время её действия истекло "
+"или она уже была использована ранее."
+msgstr ""
+"The recovery link is no longer valid: its expiration time has expired or "
+"it has already been used before."
+
+#: pyforum/user/controllers.py:182
+msgid "Вы успешно вышли из системы"
+msgstr "You have successfully logged out"
+
+#: pyforum/user/controllers.py:195
+msgid "Профиль пользователя - "
+msgstr "User profile - "
+
+#: pyforum/user/controllers.py:218
+msgid "Редактирование профиля"
+msgstr "Editing a profile"
+
+#: pyforum/user/controllers.py:221
+msgid "Вы не можете редактировать чужие профили"
+msgstr "You can not edit others' profiles"
+
+#: pyforum/user/models.py:43
+msgid "Администратор"
+msgstr "Administrator"
+
+#: pyforum/user/models.py:45
+msgid "Пользователь"
+msgstr "User"
+
+#~ msgid "Имя пользователя:"
+#~ msgstr "Username: "
+
+#~ msgid "Введите имя пользоватля!"
+#~ msgstr "Enter the user name!"
+
+#~ msgid "Введите эл. адрес!"
+#~ msgstr "Enter the email!"
+
+#~ msgid "Введите пароль!"
+#~ msgstr "Enter password!"
+
+#~ msgid "Пароли должны совпадать!"
+#~ msgstr "Passwords must match!"
+
+#~ msgid "Повторите пароль:"
+#~ msgstr "Confirm password:"
+
+#~ msgid "Ваш эл. адрес:"
+#~ msgstr "Your email:"
+
+#~ msgid "Авторизоваться"
+#~ msgstr "Log in"
+
+#~ msgid "Эл. адрес"
+#~ msgstr "E-mail"
+
+#~ msgid "Сбросить пароль"
+#~ msgstr "Reset the password"
+
+#~ msgid "Изменить пароль"
+#~ msgstr "Change password"
+
+#~ msgid "Создать"
+#~ msgstr "Create"
+
+#~ msgid "Ответ"
+#~ msgstr "Answer"
+
+#~ msgid "Ответить"
+#~ msgstr "Reply"
+
+#~ msgid "Описание"
+#~ msgstr "Description"
+
+#~ msgid "Подпись:"
+#~ msgstr "Signature:"
+
+#~ msgid "Подтвердите адрес эл.почты"
+#~ msgstr "Confirm an e-mail"
+
+#~ msgid "Подтвердите Ваш электронный адрес"
+#~ msgstr "Confirm your e-mail address"
+
