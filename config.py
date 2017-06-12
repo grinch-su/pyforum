@@ -1,7 +1,5 @@
 import os
 
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-
 
 class Config(object):
     # Flask
@@ -9,7 +7,6 @@ class Config(object):
     TESTING = False
     SECRET_KEY = ''
     CSRF_ENABLED = True
-
     # SQLAlchemy for db
     SQLALCHEMY_DATABASE_URI = "postgresql://postgres:8497@localhost/forum"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -41,15 +38,18 @@ class Config(object):
 
 
 class DevelopmentConfig(Config):
+    # конфиг для разработки
     DEBUG = True
     SECRET_KEY = '\xeaX\xc2\xef\xfc\xbc\x88Hq\x9a\x81\x9d\x04\xf3d]E4\xe2B\x7f\xf3\xd1l'
     SQLALCHEMY_ECHO = False
 
 
 class TestingConfig(Config):
+    # конфиг для тестирования
     TESTING = True
 
 
 class ProductionConfig(Config):
+    # конфиг для production
     DEBUG = False
     SECRET_KEY = '\x05\xac!\xf68\xda\x1a\x8fE\x8c\xfemoN#O\xeccQ\xae\xe8+\xab\x16'

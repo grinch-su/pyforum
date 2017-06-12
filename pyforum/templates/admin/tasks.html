@@ -1,9 +1,12 @@
+{# импорт шаблона админ панили #}
 {% extends 'layout_admin.html' %}
 
+{#блок заголовка страницы#}
 {% block title %}
     {{ title }} - {{ g.user.username }} | PyForumAdmin
 {% endblock %}
 
+{#блок контента#}
 {% block content %}
     <h2 class="page-header">{{ _('Обсуждения') }}</h2>
     <canvas id="categoryCharts" height="75"></canvas>
@@ -53,7 +56,7 @@
                                 {{ topic.content | safe | truncate(30, False, '...',0)}}
                             </td>
                             <td>
-                                {{ topic.date_created }}
+                                {{ moment(topic.date_created).format('L LT') }}
                             </td>
                             <td>
                                 {{ topic.views }}
@@ -85,6 +88,7 @@
 
 {% block script %}
     <script>
+        {#  функция генерирования цветов формата rgba #}
         function rgba_colors() {
             function rgba_color() {
                 var rint = Math.floor( 0x100000000 * Math.random());
@@ -97,6 +101,7 @@
             return r
         }
         var categoryChart = document.getElementById('categoryCharts').getContext('2d');
+        {#    данные для диаграммы категории  #}
         dataCountTopicsinCategory = {
             datasets: [{
                 backgroundColor: rgba_colors(),

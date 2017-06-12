@@ -7,12 +7,6 @@
 {% block content %}
     <div class="page-header">
         <h2>{{ topic.title }}<small></small></h2>
-        <span class="glyphicon glyphicon-tags" aria-hidden="true">
-        {% for tag in tags %}
-            {{ tag }}
-        {% endfor %}
-
-        </span>
         <p>Автор:
             <a href="{{ url_for('user.show_profile_user',username=topic.user.username) }}">
                 <span class="label label-success">{{ topic.user.username }}
@@ -20,7 +14,7 @@
             </a>
         </p>
         <p class="text-muted">
-            {{ _('Ответов: ') }} {{ topic.replies.count() }}
+            {{ _('Ответов: ') }}{{ topic.replies.count() }}
             {{ _('Просмотров: ') }}{{ topic.views }}
         </p>
         <ul class="list-group">
@@ -34,7 +28,7 @@
                     </div>
                     <div class="media-body">
                         <p>{{ topic.content | safe }}</p>
-                        <p class="text-muted">{{ topic.date_created }}</p>
+                        <p class="text-muted">{{ moment(topic.date_created).format('L LT') }}</p>
                         {% if g.user.username == topic.user.username %}
                                 <a class="btn btn-default" href="{{ url_for('forum.edit_topic', id=topic.id) }}">
                                     <span class="glyphicon glyphicon-pencil"></span>
@@ -73,7 +67,7 @@
                             <a href="{{ url_for('user.show_profile_user', username=reply.user.username) }}">
                                 {{ reply.user.username }},
                             </a>
-                            {{ reply.date_created }}
+                            {{ moment(reply.date_created).format('L LT') }}
                         </p>
                     </div>
                 </div>

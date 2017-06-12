@@ -15,7 +15,7 @@
             <span class="input-group-addon">{{ _('Выберите категорию') }}</span>                 
                 <select name="category_select" class="selectpicker form-control" title="">
                     {% for category in categories %}
-                        <option value="{{ category.id }}">{{ category.name }}</option>
+                        <option value="{{ category.id }}" {% if topic.category_id == category.id %} selected {% endif %}>{{ category.name }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -27,7 +27,7 @@
                 textarea.innerHTML = {{ topic.content | safe | tojson }};
             </script>
         </div>
-        {{ form.submit(class="btn btn-primary") }}
+        {{ form.submit(class="btn btn-primary", value=_('Сохранить')) }}
     </form>
 {% endblock %}
 

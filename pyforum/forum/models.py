@@ -6,6 +6,7 @@ from pyforum import db
 
 
 class Category(db.Model):
+    # ORM таблица категории
     __tablename = 'category'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -23,6 +24,7 @@ class Category(db.Model):
 
 
 class Topic(db.Model):
+    # ORM таблица обсуждения
     __tablename__ = 'topic'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -48,6 +50,7 @@ class Topic(db.Model):
 
 
 class Reply(db.Model):
+    # ORM таблица ответов
     __tablename__ = 'reply'
 
     id = db.Column(db.Integer, primary_key=True)

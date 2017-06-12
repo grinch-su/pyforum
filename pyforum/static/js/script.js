@@ -22,7 +22,7 @@ $("#b-100").click(function () {
 $("#alert").fadeTo(3000, 500).slideUp(500, function () {
     $("#alert").alert('close');
 });
-
+// поиск пользователей
 $('#search_user').keyup(function () {
     $('#result').html('');
     var searchField = $('#search_user').val();

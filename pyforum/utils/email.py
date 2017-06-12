@@ -10,11 +10,13 @@ from flask_babel import _
 
 
 def send_async_email(msg):
+    # отправка асинхронного письма
     with app.app_context():
         mail.send(msg)
 
 
 def send_email(subject, recipients, text_body, html_body):
+    # отправка пиьсма
     msg = Message(subject, recipients=recipients)
     msg.body = text_body
     msg.html = html_body
@@ -22,19 +24,21 @@ def send_email(subject, recipients, text_body, html_body):
     thr.start()
 
 def send_confirmation_email(user_email):
+    # отправка письма на подтверждение аккаунта
     confirm_serializer = URLSafeTimedSerializer(Config.SECRET_KEY)
     confirm_url = url_for('user.confirm_email',
                   token=confirm_serializer.dumps(user_email, salt='email-confirmation-salt'),
                   _external=True)
     html = render_template('user/auth/email_confirmation.html',
                            confirm_url=confirm_url)
-    send_email(_('Подтвердите Ваш электронный адрес'),
+    send_email('Подтвердите Ваш электронный адрес',
                [user_email],
-               text_body=(_('Подтвердите адрес эл.почты')),
+               text_body='Подтвердите адрес эл.почты',
                html_body=html)
 
 
 def send_reset_password(user_email):
+    # ф-ия отправки письма на восстановление пароля
     confirm_serializer = URLSafeTimedSerializer(Config.SECRET_KEY)
     url = url_for('user.reset_with_token',
                   token=confirm_serializer.dumps(user_email, salt='email-confirmation-salt'),

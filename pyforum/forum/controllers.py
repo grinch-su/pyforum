@@ -13,6 +13,7 @@ from pyforum.user.models import User
 
 @forum.route('/')
 def index():
+    # главня страница форума
     categories = Category.query.order_by(Category.name.desc()).all()
     new_topics = Topic.query.order_by(Topic.date_created.desc()).limit(4).all()
     latest_member = User.query.order_by(User.date_joined.desc()).limit(1).first()
@@ -29,6 +30,7 @@ def index():
 @forum.route('<category_name>', methods=['GET', 'POST'])
 @forum.route('<category_name>/page-<int:page>', methods=['GET', 'POST'])
 def category(category_name, page=1):
+    # все обсужения для категории
     topics_per_page = 5
     category = Category.query.filter_by(name=category_name).first_or_404()
     topics = Topic.query.filter_by(category_id=category.id).order_by(Topic.date_created.desc()).paginate(page, topics_per_page, True)
@@ -41,17 +43,16 @@ def category(category_name, page=1):
 @forum.route('<category_name>/topic-<int:topic_id>', methods=['GET','POST'])
 @forum.route('<category_name>/topic-<int:topic_id>/page-<int:page>', methods=['GET', 'POST'])
 def topic(category_name, topic_id, page=1):
+    # обсуждение и кол. ответов на одной стрнице
     replies_per_page = 10
     topic_item = Topic.query.get(topic_id)
     category = Category.query.filter_by(name=category_name).first_or_404()
     replies = Reply.query.filter_by(topic_id=topic_id).order_by(Reply.date_created).paginate(page,
                                                                                              replies_per_page,
                                                                                              True)
-
     topic_item.views += 1
     db.session.commit()
     form = NewPostForm()
-
     if request.method == 'POST' and form.validate_on_submit():
         reply = Reply(content=form.content.data)
         reply.category_id = category.id
@@ -75,6 +76,7 @@ def topic(category_name, topic_id, page=1):
 @forum.route('topic/new', methods=['GET', 'POST'])
 @login_required
 def create_topic():
+    # создание ногово обсуждения
     if not current_user.is_authenticated:
         flash(_('Войдите в систему что-бы создать обсуждение!'), 'info')
         return redirect(url_for('forum.index'))
@@ -100,6 +102,7 @@ def create_topic():
 @forum.route('category/new', methods=['GET', 'POST'])
 @login_required
 def new_category():
+    # создание новой категории
     if g.user.admin == False:
         flash(_('Нет доступа к созданию категорий.'), 'info')
         return redirect(url_for('forum.index'))
@@ -121,6 +124,7 @@ def new_category():
 @forum.route('topic/delete/<int:id>', methods=['GET', 'POST'])
 @login_required
 def delete_topic(id):
+    # удаление обсуждение по id
     del_topic = Topic.query.filter_by(id=id).first_or_404()
     if current_user.admin == True or del_topic.user_id == current_user.id:
         Reply.query.filter_by(topic_id=id).delete()
@@ -138,6 +142,7 @@ def delete_topic(id):
 @forum.route('topic/edit-topic/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_topic(id):
+    # редактирование обсуждения
     topic_item = Topic.query.filter_by(id=id).first_or_404()
     categories = Category.query.order_by(Category.name.desc()).all()
     category_item = Category.query.filter_by(id=topic_item.category_id).first_or_404()
@@ -163,9 +168,3 @@ def edit_topic(id):
     elif topic_item.user_id != current_user.id:
         flash(_("Нет доступа к удалению даунного обсуждения"), 'info')
         return redirect(url_for('forum.index'))
-
-
-@forum.route('category', methods=['GET'])
-def get_all_categories():
-    all_categories = Category.query.all()
-    return jsonify({'categories': [category.to_json() for category in all_categories]})

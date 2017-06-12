@@ -10,27 +10,27 @@ from pyforum.user.models import User
 migrate = Migrate(app, db)
 manager = Manager(app)
 
-manager.add_command('run', Server(host='0.0.0.0', port=8080))
+manager.add_command('run', Server(host='0.0.0.0', port=5000))
 manager.add_command('db', MigrateCommand)
 
 
 @manager.command
 def create_db():
-    "create database tables fro SQLAlchemy models"
+    # создание таблиц бд
     db.create_all()
     return _('Все таблицы созданы')
 
 
 @manager.command
 def drop_db():
-    "drops db tables"
+    # удаление всех таблиц бд
     if prompt_bool(_("Вы действительн хотите потерять все свои данные?")):
         db.drop_all()
 
 
 @manager.command
 def create_admin():
-    "create user admin"
+    # создание пользователя с админ. правами
     user = User(username='admin',
                 email='admin@admin.com',
                 password='admin'

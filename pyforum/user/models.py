@@ -8,6 +8,7 @@ from flask_babel import _
 from pyforum import db
 
 class User(db.Model, UserMixin):
+    # ORM таблица пользователей
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -23,7 +24,7 @@ class User(db.Model, UserMixin):
     activated = db.Column(db.Boolean, default=False)
     status = db.Column(db.String)
     online_status = db.Column(db.Boolean, default=False)
-
+    lang = db.Column(db.String, default='en')
     admin = db.Column(db.Boolean, default=False)
     banned = db.Column(db.Boolean, default=False)
     replies = db.relationship('Reply', backref='user', lazy='dynamic')
@@ -60,8 +61,10 @@ class User(db.Model, UserMixin):
         )
 
 class Anonymous(AnonymousUserMixin):
+    # класс с анонимным пользователей(Гость)
     def __init__(self):
         self.id = 0
         self.username = 'Guest'
         self.admin = False
         self.banned = False
+        self.lang = 'en'

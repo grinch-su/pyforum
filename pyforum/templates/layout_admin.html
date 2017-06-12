@@ -8,6 +8,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="stylesheet" type="text/css" href="{{ url_for ('static', filename='css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for ('static', filename='css/style-admin.css') }}">
+        {{ moment.include_jquery() }}
+        {{ moment.include_moment() }}
+        {{ moment.lang(g.user.lang) }}
     </head>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -59,7 +62,7 @@
 
             </div>
         </div>
+        {% include 'scripts.html' %}
+        {% block script %}{% endblock %}
     </body>
-    {% include 'scripts.html' %}
-    {% block script %}{% endblock %}
 </html>

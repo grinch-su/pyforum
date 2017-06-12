@@ -4,9 +4,9 @@
     <form class="form-horizontal" role="form" method="post" action="{{ url_for('user.sign_up') }}">
         {{ form.csrf_token }}
         <div class="form-group">
-            {{ form.username.label(class="col-sm-2 control-label") }}
+            <label class="col-sm-2 control-label">{{ _('Имя пользователя: ') }}</label>
             <div class="col-sm-10">
-                {{ form.username(class="form-control", placeholder="Имя пользователя") }}
+                {{ form.username(class="form-control", placeholder=_('Имя пользователя')) }}
             </div>
             {% for error in form.username.errors %}
                 <span id="helpBlock2" class="help-block">
@@ -17,19 +17,19 @@
         <div class="form-group">
             <label for="email" class="col-sm-2 control-label">{{ _('Эл. адрес:') }}</label>
             <div class="col-sm-10">
-                {{ form.email(class="form-control", placeholder="Эл. адрес") }}
+                {{ form.email(class="form-control") }}
             </div>
         </div>
         <div class="form-group">
             <label for="password" class="col-sm-2 control-label">{{ _('Пароль:') }}</label>
             <div class="col-sm-10">
-                {{ form.password(class="form-control", placeholder="Пароль") }}
+                {{ form.password(class="form-control") }}
             </div>
         </div>
         <div class="form-group">
-            {{ form.confirm.label(class="col-sm-2 control-label", for="confirm") }}
+            <label for="password" class="col-sm-2 control-label">{{ _('Подтвердите пароль: ') }}</label>
             <div class="col-sm-10">
-                {{ form.confirm(class="form-control", placeholder="Пароль") }}
+                {{ form.confirm(class="form-control") }}
             </div>
         </div>
         <div class="form-group">
@@ -44,7 +44,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                {{ form.submit(class="btn btn-primary") }}
+                {{ form.submit(class="btn btn-primary",value=_('Зарегистрироваться')) }}
             </div>
         </div>
     </form>

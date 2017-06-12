@@ -18,12 +18,12 @@
             {% if user.web_site %}
                 <p>{{ _('Веб-сайт:') }} <a href="{{ user.web_site }}" target="_blank">{{ user.web_site }}</a></p>
             {% endif %}
-            <p>{{ _('Кол-во ответов:') }}{{ replies | count }}</p>
-            <p>{{ _('Кол-во обсуждений:') }}{{ topics | count }}</p>
-            <p>{{ _('Дата регистрации:') }}{{ user.date_joined }}</p>
+            <p>{{ _('Кол-во ответов:') }} {{ replies | count }}</p>
+            <p>{{ _('Кол-во обсуждений:') }} {{ topics | count }}</p>
+            <p>{{ _('Дата регистрации:') }} {{ moment(user.date_joined).format('L LT') }}</p>
             {% if user.last_visit == None %}
             {% else %}
-                <p>{{ _('Последняя активность:') }}{{ user.last_visit }}</p>
+                <p>{{ _('Последняя активность:') }} {{ moment(user.last_visit).fromNow() }}</p>
             {% endif %}
         </div>
 
@@ -49,7 +49,7 @@
                                 <a href="{{ url_for('forum.topic',category_name=topic.category.name,topic_id = topic.id,page=1) }}">
                                     <h4 class="media-heading">{{ topic.title }}</h4>
                                 </a>
-                                <p>{{ _('Дата создания:') }}{{ topic.date_created }}</p>
+                                <p>{{ _('Дата создания:') }}{{ moment(topic.date_created).format('L LT') }}</p>
                                 <p class="text-muted">
                                     {{ _('Ответов:') }}{{ topic.replies.count() }}
                                     {{ _('Просмотров:') }}{{ topic.views }}
@@ -83,7 +83,7 @@
                                         {{ _('Автор обсуждения: ') }}{{ user.username }}
                                     </p>
                                     <p class="text-muted">
-                                        {{ _('Дата:') }}{{ reply.date_created }}
+                                        {{ _('Дата:') }}{{ moment(reply.date_created).format('L LT') }}
                                     </p>
                                     <p>{{ reply.content | safe}}</p>
                                 </div>

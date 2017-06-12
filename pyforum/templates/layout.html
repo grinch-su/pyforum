@@ -14,6 +14,9 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for ('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for ('static', filename='css/styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nprogress.css') }}">
+    {{ moment.include_jquery() }}
+    {{ moment.include_moment() }}
+    {{ moment.lang(g.user.lang) }}
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -40,7 +43,6 @@
                         </a>
                     </li>
                 </ul>
-
                 <ul class="nav navbar-nav navbar-right">
                     {% if g.user.is_authenticated %}
                     <li class="dropdown">

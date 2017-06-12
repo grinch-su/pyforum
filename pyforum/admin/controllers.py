@@ -10,6 +10,7 @@ from pyforum.forum.models import Category
 @admin.route('/topics', methods=['GET', 'POST'])
 @login_required
 def admin_topics():
+    # все обсуждения для админ панели
     if not current_user.admin:
         flash(_('Нет доступа к админ панели'), 'error')
         return redirect(url_for('forum.index'))
@@ -23,6 +24,7 @@ def admin_topics():
 @admin.route('/users', methods=['GET', 'POST'])
 @login_required
 def admin_users():
+    # все польщователи для админ панели
     if not current_user.admin:
         flash(_('Нет доступа к админ панели'), 'error')
         return redirect(url_for('forum.index'))

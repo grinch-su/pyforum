@@ -34,7 +34,7 @@
                                 </span>
                             </a>
                         </p>
-                        <p>{{ topic.date_created }}</p>
+                        <p>{{ moment(topic.date_created).format('L LT') }}</p>
                         <p class="text-muted">
                             Ответов: {{ topic.replies.count() }}
                             Просмотров: {{ topic.views }}

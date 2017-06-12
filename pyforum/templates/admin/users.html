@@ -10,19 +10,19 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Действия</th>
-                    <th>id</th>
-                    <th>Имя пользователя</th>
-                    <th>Эл. адрес</th>
-                    <th>Пароль</th>
-                    <th>IP</th>
-                    <th>Дата регистрации</th>
-                    <th>Последний визит</th>
-                    <th>Веб-сайт</th>
-                    <th>Активация</th>
-                    <th>Админ</th>
-                    <th>Бан</th>
-                    <th>Дата рождения</th>
+                    <th>{{ _('Действия') }}</th>
+                    <th>{{ _('id') }}</th>
+                    <th>{{ _('Имя пользователя') }}</th>
+                    <th>{{ _('Эл.адрес') }}</th>
+                    <th>{{ _('Пароль') }}</th>
+                    <th>{{ _('IP') }}</th>
+                    <th>{{ _('Дата регистрации') }}</th>
+                    <th>{{ _('Последний визит') }}</th>
+                    <th>{{ _('Веб-сайт') }}</th>
+                    <th>{{ _('Активация') }}</th>
+                    <th>{{ _('Админ') }}</th>
+                    <th>{{ _('Бан') }}</th>
+                    <th>{{ _('Дата рождения') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,11 +51,11 @@
                                 {{ user.ip }}
                             </td>
                             <td>
-                                {{ user.date_joined }}
+                                {{ moment(user.date_joined).format('L') }}
                             </td>
                             <td>
                                 {% if user.last_visit %}
-                                    {{ user.last_visit }}
+                                    {{ moment(user.last_visit).fromNow() }}
                                 {% endif %}
                             </td>
                             <td>

@@ -5,29 +5,33 @@ from wtforms.validators import InputRequired, Length, EqualTo
 from flask_babel import lazy_gettext
 
 class SignUpForm(FlaskForm):
-    username = StringField(lazy_gettext(u'Имя пользователя:'), validators=[InputRequired(lazy_gettext(u'Введите имя пользоватля!'))])
-    email = EmailField(lazy_gettext(u'Эл. адрес:'), validators=[InputRequired(lazy_gettext(u'Введите эл. адрес!'))])
-    password = PasswordField(lazy_gettext(u'Пароль:'),  validators=[InputRequired(lazy_gettext(u'Введите пароль!')),
+    # форма для регистрациии
+    username = StringField(validators=[InputRequired(lazy_gettext(u'Введите имя пользоватля!'))])
+    email = EmailField(validators=[InputRequired(lazy_gettext(u'Введите эл. адрес!'))])
+    password = PasswordField(validators=[InputRequired(lazy_gettext(u'Введите пароль!')),
                                                            EqualTo('confirm', message=lazy_gettext(u'Пароли должны совпадать!'))])
-    confirm = PasswordField(lazy_gettext(u'Повторите пароль:'))
+    confirm = PasswordField()
     re_captcha = RecaptchaField()
-    submit = SubmitField(lazy_gettext(u'Зарегистрироваться'))
+    submit = SubmitField()
 
 
 class SignInForm(FlaskForm):
-    email = EmailField(lazy_gettext(u'Ваш эл. адрес:'), validators=[InputRequired(lazy_gettext(u'Введите эл. адрес!'))])
-    password = PasswordField(lazy_gettext(u'Пароль:'), validators=[InputRequired(lazy_gettext(u'Введите пароль!'))])
+    # форма для авторизации
+    email = EmailField(validators=[InputRequired(lazy_gettext(u'Введите эл. адрес!'))])
+    password = PasswordField(validators=[InputRequired(lazy_gettext(u'Введите пароль!'))])
     re_captcha = RecaptchaField()
-    submit = SubmitField(lazy_gettext(u'Авторизоваться'))
+    submit = SubmitField()
 
 
 class ResetEmailForm(FlaskForm):
-    email = EmailField(lazy_gettext(u'Эл. адрес'), validators=[InputRequired(lazy_gettext(u'Введите эл. адрес!'))])
-    submit = SubmitField(lazy_gettext(u'Сбросить пароль'))
+    # форма для восстановления аккаунта
+    email = EmailField(validators=[InputRequired(lazy_gettext(u'Введите эл. адрес!'))])
+    submit = SubmitField()
 
 
 class ResetPasswordForm(FlaskForm):
-    password = PasswordField(lazy_gettext(u'Пароль:'),  validators=[InputRequired(lazy_gettext(u'Введите пароль!')),
+    # форма для восстановления пароля
+    password = PasswordField(validators=[InputRequired(lazy_gettext(u'Введите пароль!')),
                                                            EqualTo('confirm', message=lazy_gettext(u'Пароли должны совпадать!'))])
-    confirm = PasswordField(lazy_gettext(u'Повторите пароль:'))
-    submit = SubmitField(lazy_gettext(u'Изменить пароль'))
+    confirm = PasswordField()
+    submit = SubmitField()

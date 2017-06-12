@@ -7,34 +7,48 @@
 {% block content %}
         <form class="form-horizontal" action="{{ url_for('user.edit_profile',username=user.username) }}" method="POST">
             <div class="form-group">
-                <label for="inputUsername" class="col-sm-2 control-label">{{ _('Имя пользователя') }}</label>
+                <label for="inputUsername" class="col-sm-2 control-label">{{ _('Имя пользователя: ') }}</label>
                 <div class="col-sm-10">
                     <input  class="form-control" id="inputUsername" name="username" type="text" value="{{ user.username }}">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="inputPassword" class="col-sm-2 control-label">{{ _('Пароль') }}</label>
+                <label for="inputPassword" class="col-sm-2 control-label">{{ _('Пароль: ') }}</label>
                 <div class="col-sm-10">
                     <input  class="form-control" id="inputPassword" name="password" type="password" value="{{ user.password }}">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="inputBirthDay" class="col-sm-2 control-label">{{ _('Дата рождения') }}</label>
+                <label for="inputBirthDay" class="col-sm-2 control-label">{{ _('Дата рождения: ') }}</label>
                 <div class="col-sm-10">
                     <input  class="form-control" id="inputBirthDay" name="birth-day" type="date" value="{{ user.birth_day }}">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="inputWebSite" class="col-sm-2 control-label">{{ _('Веб-сайт') }}</label>
+                <label for="inputWebSite" class="col-sm-2 control-label">{{ _('Веб-сайт: ') }}</label>
                 <div class="col-sm-10">
                     <input  class="form-control" id="inputWebSite" name="web-site" placeholder="http://example.com" type="text" value="{{ user.web_site }}">
                 </div>
             </div>
             <div class="form-group">
-                <label for="textAreaSignature" class="col-sm-2 control-label"> {{ _('Подпись:') }}</label>
+                <label for="" class="col-sm-2 control-label">{{ _('Язык: ') }}</label>
+                <div class="col-sm-10">
+                    <select name="lang_select" class="form-control">
+                            <option {% if user.lang == 'ru' %} selected {% endif %} value="ru" >
+                                {{ _('Русский') }}
+                            </option>
+                            <option {% if user.lang == 'en' %} selected {% endif %} value="en" >
+                                {{ _('Английский') }}
+                            </option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="textAreaSignature" class="col-sm-2 control-label"> {{ _('Подпись: ') }}</label>
                 <div class="col-sm-10">
                     <textarea name="signature" id="textAreaSignature" class="form-control ckeditor">
                         {{ user.signature | safe}}

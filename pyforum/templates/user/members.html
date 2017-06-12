@@ -27,7 +27,7 @@
                             {{ _('Обсуждений: ') }}{{ member.topics.count()  }}
                         </p>
                         <p class="text-muted">
-                            {{ _('Заходил') }} {{ member.last_visit}}
+                            {{ _('Заходил') }} {{ moment(member.last_visit).fromNow()}}
                         </p>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
 
 {% block sidebar %}
     <h4>{{ _('Поиск участников') }}</h4>
-    <input type="text" class="form-control" id="search_user" name="search_user" value="" placeholder="Поиск...">
+    <input type="text" class="form-control" id="search_user" name="search_user" value="" placeholder="{{ _("Поиск...") }}">
     <ul id="result" class="list-group">
     </ul>
     <h4>{{ _('Новые пользователи') }}</h4>
