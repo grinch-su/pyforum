@@ -1,6 +1,5 @@
 import os
 
-
 class Config(object):
     # Flask
     DEBUG = False
@@ -35,7 +34,7 @@ class Config(object):
     #  reCAPTCHA
     RECAPTCHA_PUBLIC_KEY = '6LfM0CEUAAAAALbGsC_3zUk0-A9Hx2zWip1CVVe6'
     RECAPTCHA_PRIVATE_KEY = '6LfM0CEUAAAAAC8uRKYCbgsQscMkbgvIfiFcj2pB'
-
+    # RECAPTCHA_PARAMETERS={'hl': 'en'}
 
 class DevelopmentConfig(Config):
     # конфиг для разработки

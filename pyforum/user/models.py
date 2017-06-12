@@ -67,4 +67,4 @@ class Anonymous(AnonymousUserMixin):
         self.username = 'Guest'
         self.admin = False
         self.banned = False
-        self.lang = 'en'
+        self.lang = 'ru'

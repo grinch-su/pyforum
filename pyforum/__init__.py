@@ -1,7 +1,7 @@
 from os import environ
 
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
+from flask import Flask, g
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_babel import Babel

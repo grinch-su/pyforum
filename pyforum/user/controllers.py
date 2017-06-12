@@ -20,7 +20,6 @@ login_manager.anonymous_user = Anonymous
 def get_locale():
     # получение локализации пользователя
     return current_user.lang
-    # return request.accept_languages.best_match(Config.SUPPORTED_LANGUAGES.keys())
 
 
 @babel.timezoneselector
@@ -46,6 +45,8 @@ def unauthorized_callback():
 def before_request():
     g.user = current_user
     g.user.locale = get_locale()
+    # with app.app_context():
+    app.config.update(RECAPTCHA_PARAMETERS={'hl': current_user.lang })
     if g.user.is_authenticated:
         g.user.last_visit = datetime.utcnow()
         db.session.commit()
