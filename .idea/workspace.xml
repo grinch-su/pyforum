@@ -5,12 +5,76 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42a40790-f24f-438c-b357-cc0f4a9d9a83" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/icons.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/icons_hidpi.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/images/arrow.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/images/close.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/images/hidpi/close.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/images/hidpi/lock-open.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/images/hidpi/lock.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/images/hidpi/refresh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/images/lock-open.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/images/lock.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/images/refresh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/.temp/css/dialog.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/.temp/css/dialog_ie.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/.temp/css/dialog_ie7.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/.temp/css/dialog_ie8.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/.temp/css/dialog_iequirks.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/.temp/css/dialog_opera.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/.temp/css/editor.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/.temp/css/editor_gecko.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/.temp/css/editor_ie.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/.temp/css/editor_ie7.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/.temp/css/editor_ie8.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/.temp/css/editor_iequirks.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/dev/icons16.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/dev/icons32.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/dev/locations.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/dialog.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/dialog_ie.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/dialog_ie7.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/dialog_ie8.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/dialog_iequirks.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/dialog_opera.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/editor.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/editor_gecko.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/editor_ie.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/editor_ie7.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/editor_ie8.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/editor_iequirks.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/readme.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/sample/bootstrapck-sample.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/sample/css/bootstrapck-sample.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/sample/js/analytics.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/sample/js/jquery-1.11.0.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/browser-specific/gecko/editor_gecko.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/browser-specific/ie/dialog_ie.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/browser-specific/ie/editor_ie.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/browser-specific/ie7/dialog_ie7.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/browser-specific/ie7/editor_ie7.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/browser-specific/ie8/dialog_ie8.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/browser-specific/ie8/editor_ie8.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/browser-specific/iequirks/dialog_iequirks.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/browser-specific/iequirks/editor_iequirks.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/browser-specific/opera/dialog_opera.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/components/_colorpanel.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/components/_elementspath.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/components/_mainui.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/components/_menu.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/components/_panel.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/components/_presets.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/components/_reset.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/components/_richcombo.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/components/_toolbar.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/components/editor.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/config/_colors.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/config/_config.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/config/_defaults.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/scss/dialog/dialog.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyforum/static/ckeditor/skins/bootstrapck/skin.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.py" afterPath="$PROJECT_DIR$/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pyforum/__init__.py" afterPath="$PROJECT_DIR$/pyforum/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pyforum/templates/layout.html" afterPath="$PROJECT_DIR$/pyforum/templates/layout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pyforum/user/controllers.py" afterPath="$PROJECT_DIR$/pyforum/user/controllers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pyforum/user/models.py" afterPath="$PROJECT_DIR$/pyforum/user/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements/base.txt" afterPath="$PROJECT_DIR$/requirements/base.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -105,7 +169,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="controllers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyforum/user/controllers.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="80">
@@ -113,6 +177,16 @@
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/requirements/base.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -166,16 +240,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="544">
               <caret line="43" column="48" lean-forward="false" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="topic.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pyforum/templates/forum/topic.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="8" column="49" lean-forward="false" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -338,6 +402,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pyforum" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyforum" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyforum" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="requirements" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -560,6 +638,54 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyforum" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyforum" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyforum" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ckeditor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyforum" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyforum" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyforum" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ckeditor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="skins" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -976,19 +1102,32 @@
       <option name="project" value="LOCAL" />
       <updated>1497301148824</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="-">
+      <created>1497303413118</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1497303413118</updated>
+    </task>
+    <task id="LOCAL-00026" summary="-">
+      <created>1497303508681</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1497303508681</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1874" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17445482" sideWeight="0.50441015" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917964" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22429906" sideWeight="0.49558985" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29075804" sideWeight="0.49779493" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19003116" sideWeight="0.48015437" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29075804" sideWeight="0.49779493" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.317757" sideWeight="0.48015437" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22271223" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12513782" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281412" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1045,14 +1184,6 @@
           <folding>
             <element signature="e#0#62#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements/base.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1448,6 +1579,14 @@
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements/base.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
