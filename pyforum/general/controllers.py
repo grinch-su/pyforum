@@ -1,3 +1,6 @@
+"""
+general module
+"""
 from flask import render_template, redirect, url_for, Response
 
 from pyforum.general import general

@@ -1,3 +1,7 @@
+"""
+user module
+"""
+
 from hashlib import md5
 from datetime import datetime
 

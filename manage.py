@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+manage
+"""
 from flask_script import Manager, Server, prompt_bool
 from flask_migrate import Migrate, MigrateCommand
 from flask_babel import _

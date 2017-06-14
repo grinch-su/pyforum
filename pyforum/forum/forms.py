@@ -1,5 +1,8 @@
+"""
+forum module
+"""
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField, SubmitField, StringField, SelectField
+from wtforms import TextAreaField, SubmitField, StringField
 from wtforms.validators import InputRequired, DataRequired
 from flaskckeditor import CKEditor
 from flask_babel import _

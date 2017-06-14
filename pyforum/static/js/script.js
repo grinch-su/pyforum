@@ -1,3 +1,5 @@
+// scripts
+
 $('body').show();
 $('.version').text(NProgress.version);
 NProgress.start();

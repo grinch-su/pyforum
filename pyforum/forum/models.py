@@ -1,3 +1,6 @@
+"""
+forum module
+"""
 from datetime import datetime
 
 from pyforum import db

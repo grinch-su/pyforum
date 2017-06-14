@@ -1,3 +1,6 @@
+"""
+user module
+"""
 from flask import Blueprint
 
 # определение модуля User

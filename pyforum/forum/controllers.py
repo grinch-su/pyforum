@@ -1,6 +1,9 @@
+"""
+forum module
+"""
 from datetime import datetime
 
-from flask import render_template, redirect, url_for, request, flash, g, jsonify
+from flask import render_template, redirect, url_for, request, flash, g
 from flask_login import login_required, current_user
 from flask_babel import _
 

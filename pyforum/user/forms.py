@@ -1,3 +1,7 @@
+"""
+user module
+"""
+
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms.fields.html5 import EmailField
 from wtforms import SubmitField, StringField, PasswordField

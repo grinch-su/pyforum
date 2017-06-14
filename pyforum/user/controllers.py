@@ -1,3 +1,7 @@
+"""
+user module
+"""
+
 from datetime import datetime
 
 from itsdangerous import URLSafeTimedSerializer

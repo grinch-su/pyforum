@@ -1,4 +1,7 @@
-from flask import render_template, redirect, url_for, Response, flash, request
+"""
+admin module
+"""
+from flask import render_template, redirect, url_for, flash, request
 from flask_login import current_user, login_required
 from flask_babel import _
 

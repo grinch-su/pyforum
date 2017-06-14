@@ -1,3 +1,6 @@
+"""
+pyforum  module
+"""
 from os import environ
 
 from flask_sqlalchemy import SQLAlchemy
