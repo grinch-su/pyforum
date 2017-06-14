@@ -2,11 +2,14 @@ import os
 
 class Config(object):
     # Flask
-    DEBUG = False
-    TESTING = False
-    SECRET_KEY = ''
-    CSRF_ENABLED = True
-    # SQLAlchemy for db
+    DEBUG = False # дебаггин
+    TESTING = False # тестирование приложения
+    SECRET_KEY = '' # секретны ключь
+    CSRF_ENABLED = True # защита от атак для WTF-Forms
+
+    # SQLAlchemy для db
+
+    # база данных, пользователь, пароль, ip, имя бд
     SQLALCHEMY_DATABASE_URI = "postgresql://postgres:8497@localhost/forum"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
@@ -24,17 +27,18 @@ class Config(object):
     DEBUG_TB_INTERCEPT_REDIRECTS = False
 
     # Flask-babel for localization
+    # поддерживаемые языки
     SUPPORTED_LANGUAGES = {
         'en': 'English',
         'ru': 'Russian'
     }
+
     BABEL_DEFAULT_LOCALE = "ru"
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
     #  reCAPTCHA
     RECAPTCHA_PUBLIC_KEY = '6LfM0CEUAAAAALbGsC_3zUk0-A9Hx2zWip1CVVe6'
     RECAPTCHA_PRIVATE_KEY = '6LfM0CEUAAAAAC8uRKYCbgsQscMkbgvIfiFcj2pB'
-    # RECAPTCHA_PARAMETERS={'hl': 'en'}
 
 class DevelopmentConfig(Config):
     # конфиг для разработки

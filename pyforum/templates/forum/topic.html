@@ -7,7 +7,7 @@
 {% block content %}
     <div class="page-header">
         <h2>{{ topic.title }}<small></small></h2>
-        <p>Автор:
+        <p>{{ _("Автор:") }}
             <a href="{{ url_for('user.show_profile_user',username=topic.user.username) }}">
                 <span class="label label-success">{{ topic.user.username }}
                 </span>
@@ -75,25 +75,25 @@
         {% endfor %}
     </ul>
     {% if not replies.items %}
-        <h2 class="text-muted">Ответов нет</h2>
+        <h2 class="text-muted">{{ _("Ответов нет") }}</h2>
         <br>
     {% else %}
     <nav aria-label="...">
         <ul class="pager">
             {% if replies.has_prev %}
-                <li class="previous"><a href="{{ url_for('forum.topic',category_name=category.name, topic_id=topic.id, page=replies.prev_num) }}"><span aria-hidden="true">&larr;</span> Предыдущая</a></li>
+                <li class="previous"><a href="{{ url_for('forum.topic',category_name=category.name, topic_id=topic.id, page=replies.prev_num) }}"><span aria-hidden="true">&larr;</span>{{ _("Предыдущая") }}</a></li>
             {% else %}
-                <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span>Предыдущая</a></li>
+                <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span>{{ _("Предыдущая") }}</a></li>
             {% endif %}
             {% for page in replies.iter_pages() %}
                 <li><a href="{{ url_for('forum.topic', category_name=category.name, topic_id=topic.id, page=page) }}">{{ page }}</a></li>
             {% endfor %}
             {% if replies.has_next %}
                 <li class="next">
-                    <a href="{{ url_for('forum.topic',category_name=category.name, topic_id=topic.id,  page=replies.next_num) }}">Следующая<span aria-hidden="true">&rarr;</span></a></li>
+                    <a href="{{ url_for('forum.topic',category_name=category.name, topic_id=topic.id,  page=replies.next_num) }}">{{ _("Следующая") }}<span aria-hidden="true">&rarr;</span></a></li>
             {% else %}
                 <li class="next disabled">
-                    <a href="#">Следующая<span aria-hidden="true">&rarr;</span></a>
+                    <a href="#">{{ _("Следующая") }}<span aria-hidden="true">&rarr;</span></a>
                 </li>
             {% endif %}
         </ul>
@@ -109,15 +109,15 @@
             <div class="form-group">
                 {{ form.content(class = 'ckeditor') }}
             </div>
-            {{ form.submit(class = "btn btn-primary") }}
+            {{ form.submit(class = "btn btn-primary", value=_("Ответить")) }}
         </form>
 
     {% else %}
         <div class="alert alert-info" role="alert">
-            Чтобы оставить ответ, пожалуйста
-            <a href="{{ url_for('user.log_in') }}" class="alert-link">авторизуйтесь</a>
-            или
-            <a href="{{ url_for('user.sign_up') }}" class="alert-link">зарегистрируйтесь.</a>
+            {{ _("Чтобы оставить ответ, пожалуйста") }}
+            <a href="{{ url_for('user.log_in') }}" class="alert-link">{{ _("авторизуйтесь") }}</a>
+            {{ _("или") }}
+            <a href="{{ url_for('user.sign_up') }}" class="alert-link">{{ _("зарегистрируйтесь.") }}</a>
         </div>
     {% endif %}
 

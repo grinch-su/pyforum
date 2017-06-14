@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-12 23:54+0300\n"
+"POT-Creation-Date: 2017-06-14 14:15+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,7 +127,7 @@ msgstr ""
 msgid "Войти"
 msgstr ""
 
-#: pyforum/templates/layout.html:96 pyforum/templates/user/auth/sign_up.html:47
+#: pyforum/templates/layout.html:90 pyforum/templates/user/auth/sign_up.html:47
 msgid "Зарегистрироваться"
 msgstr ""
 
@@ -220,16 +220,17 @@ msgstr ""
 msgid "Название категории..."
 msgstr ""
 
+#: pyforum/templates/forum/create_category.html:15
+#: pyforum/templates/forum/create_topic.html:26
+msgid "Создать"
+msgstr ""
+
 #: pyforum/templates/forum/create_topic.html:11
 msgid "Заголовок"
 msgstr ""
 
 #: pyforum/templates/forum/create_topic.html:15
 msgid "Выберите категорию:"
-msgstr ""
-
-#: pyforum/templates/forum/create_topic.html:26
-msgid "Создать"
 msgstr ""
 
 #: pyforum/templates/forum/edit_topic.html:15
@@ -254,15 +255,15 @@ msgstr ""
 msgid "Чтобы создать обсуждение, пожалуйста "
 msgstr ""
 
-#: pyforum/templates/forum/home.html:21
+#: pyforum/templates/forum/home.html:21 pyforum/templates/forum/topic.html:118
 msgid "авторизуйтесь"
 msgstr ""
 
-#: pyforum/templates/forum/home.html:22
+#: pyforum/templates/forum/home.html:22 pyforum/templates/forum/topic.html:119
 msgid "или"
 msgstr ""
 
-#: pyforum/templates/forum/home.html:23
+#: pyforum/templates/forum/home.html:23 pyforum/templates/forum/topic.html:120
 msgid "зарегистрируйтесь."
 msgstr ""
 
@@ -290,12 +291,36 @@ msgstr ""
 msgid "Новый участник"
 msgstr ""
 
+#: pyforum/templates/forum/topic.html:10
+msgid "Автор:"
+msgstr ""
+
 #: pyforum/templates/forum/topic.html:17 pyforum/templates/user/members.html:26
 msgid "Ответов: "
 msgstr ""
 
 #: pyforum/templates/forum/topic.html:18
 msgid "Просмотров: "
+msgstr ""
+
+#: pyforum/templates/forum/topic.html:78
+msgid "Ответов нет"
+msgstr ""
+
+#: pyforum/templates/forum/topic.html:84 pyforum/templates/forum/topic.html:86
+msgid "Предыдущая"
+msgstr ""
+
+#: pyforum/templates/forum/topic.html:93 pyforum/templates/forum/topic.html:96
+msgid "Следующая"
+msgstr ""
+
+#: pyforum/templates/forum/topic.html:112
+msgid "Ответить"
+msgstr ""
+
+#: pyforum/templates/forum/topic.html:117
+msgid "Чтобы оставить ответ, пожалуйста"
 msgstr ""
 
 #: pyforum/templates/general/404.html:2
@@ -466,7 +491,7 @@ msgstr ""
 msgid "Забыли пароль?"
 msgstr ""
 
-#: pyforum/templates/user/auth/log_in.html:60 pyforum/user/controllers.py:172
+#: pyforum/templates/user/auth/log_in.html:60 pyforum/user/controllers.py:173
 #: pyforum/utils/email.py:50 pyforum/utils/email.py:52
 msgid "Восстановление пароля"
 msgstr ""
@@ -500,79 +525,79 @@ msgstr ""
 msgid "Пароль:"
 msgstr ""
 
-#: pyforum/user/controllers.py:41
+#: pyforum/user/controllers.py:40
 msgid "Пожалуйста авторизируйтесь!"
 msgstr ""
 
-#: pyforum/user/controllers.py:60
+#: pyforum/user/controllers.py:61
 msgid "Вы уже вошли в систему под ником {username}"
 msgstr ""
 
-#: pyforum/user/controllers.py:68 pyforum/user/controllers.py:71
+#: pyforum/user/controllers.py:69 pyforum/user/controllers.py:72
 msgid "Пользователь с таким эл. адресом существует"
 msgstr ""
 
-#: pyforum/user/controllers.py:80
+#: pyforum/user/controllers.py:81
 msgid ""
 "Пожалуйста, проверьте свой адрес электронной почты, чтобы подтвердить "
 "свой адрес электронной почты"
 msgstr ""
 
-#: pyforum/user/controllers.py:97
+#: pyforum/user/controllers.py:98
 msgid "Ссылка подтверждения недействительна или время истекло."
 msgstr ""
 
-#: pyforum/user/controllers.py:103
+#: pyforum/user/controllers.py:104
 msgid "Аккаунт уже подтвержден."
 msgstr ""
 
-#: pyforum/user/controllers.py:108
+#: pyforum/user/controllers.py:109
 msgid "Спасибо, что подтвердили свой адрес электронной почты!"
 msgstr ""
 
-#: pyforum/user/controllers.py:116
+#: pyforum/user/controllers.py:117
 msgid "Вы уже вошли в систему под ником {user}"
 msgstr ""
 
-#: pyforum/user/controllers.py:123
+#: pyforum/user/controllers.py:124
 msgid "Неверный эл. адрес или пароль"
 msgstr ""
 
-#: pyforum/user/controllers.py:127
+#: pyforum/user/controllers.py:128
 msgid "Вы успешно вошли в систему"
 msgstr ""
 
-#: pyforum/user/controllers.py:135
+#: pyforum/user/controllers.py:136
 msgid "Пользоватль с таким эл. адресом не зарегестрирован"
 msgstr ""
 
-#: pyforum/user/controllers.py:138
+#: pyforum/user/controllers.py:139
 msgid "Проверьте вашу почту, и подтвердите регистрацию"
 msgstr ""
 
-#: pyforum/user/controllers.py:144
+#: pyforum/user/controllers.py:145
 msgid "Авторизация"
 msgstr ""
 
-#: pyforum/user/controllers.py:156
+#: pyforum/user/controllers.py:157
 msgid ""
 "Ссылка восстановления более не действительна: время её действия истекло "
 "или она уже была использована ранее."
 msgstr ""
 
-#: pyforum/user/controllers.py:182
+#: pyforum/user/controllers.py:183
 msgid "Вы успешно вышли из системы"
 msgstr ""
 
-#: pyforum/user/controllers.py:195
+#: pyforum/user/controllers.py:196
 msgid "Профиль пользователя - "
 msgstr ""
 
-#: pyforum/user/controllers.py:218
+#: pyforum/user/controllers.py:219
 msgid "Редактирование профиля"
 msgstr ""
 
-#: pyforum/user/controllers.py:221
+#: pyforum/user/controllers.py:222
 msgid "Вы не можете редактировать чужие профили"
 msgstr ""
 
