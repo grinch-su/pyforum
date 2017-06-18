@@ -95,8 +95,9 @@ def create_topic():
         topic_item.user_id = g.user.id
         db.session.add(topic_item)
         db.session.commit()
+        category_item = Category.query.get(topic_item.category_id)
         flash(_('Обсуждение было создано успешно'), 'success')
-        return redirect(url_for('forum.index'))
+        return redirect(url_for('forum.topic',category_name=category_item.name, topic_id=topic_item.id))
     return render_template('forum/create_topic.html', title=(_('Создание нового обсуждения')),
                            form=form,
                            categories=categories)
